@@ -166,44 +166,9 @@
                 <p class="subtitle">Don't just take our word for it — hear from guests who have experienced Puffling Cottage.</p>
             </div>
             
-            <div class="testimonials-featured reveal">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"An absolutely wonderful stay! The cottage is beautifully presented with every detail thought of. The location is perfect for exploring Bamburgh and the surrounding area. We can't wait to return!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Guest Name</h5>
-                            <span>December 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"The perfect getaway! Puffling Cottage exceeded all our expectations. Spotlessly clean, wonderfully decorated, and such thoughtful touches throughout. Our dog loved it too!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Guest Name</h5>
-                            <span>November 2025</span>
-                        </div>
-                    </div>
-                </div>
+            <!-- Testimonials are dynamically loaded here from testimonials-data.js -->
+            <div id="featured-testimonials" class="testimonials-featured reveal">
+                <!-- The 2 most recent testimonials will be automatically inserted here by JavaScript -->
             </div>
             
             <div class="text-center mt-3 reveal">
@@ -419,7 +384,8 @@
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top">↑</button>
 
-    <!-- Scripts -->
+    <!-- Scripts - testimonials-data.js must load BEFORE main.js -->
+    <script src="js/testimonials-data.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

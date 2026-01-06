@@ -66,8 +66,8 @@
             
             <!-- Average Rating Summary -->
             <div class="text-center reveal mb-4">
-                <div style="display: inline-flex; align-items: center; gap: var(--spacing-md); background-color: var(--color-cream-dark); padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-lg);">
-                    <div style="font-size: 3rem; font-weight: 700; color: var(--color-navy);">5.0</div>
+                <div id="rating-summary" style="display: inline-flex; align-items: center; gap: var(--spacing-md); background-color: var(--color-cream-dark); padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-lg);">
+                    <div class="average-score" style="font-size: 3rem; font-weight: 700; color: var(--color-navy);">5.0</div>
                     <div style="text-align: left;">
                         <div class="testimonial-stars" style="margin-bottom: 4px;">
                             <span class="star">★</span>
@@ -76,7 +76,7 @@
                             <span class="star">★</span>
                             <span class="star">★</span>
                         </div>
-                        <div style="font-size: 0.9rem; color: var(--color-gray-dark);">Based on guest reviews</div>
+                        <div class="review-count" style="font-size: 0.9rem; color: var(--color-gray-dark);">Based on guest reviews</div>
                     </div>
                 </div>
             </div>
@@ -86,164 +86,9 @@
     <!-- Testimonials Grid Section -->
     <section class="section section-cream" style="padding-top: 0;">
         <div class="container">
-            <div class="testimonials-grid reveal">
-                
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"Excellent lovely cottage; everything you want, we had no issue with parking our car (which is an SUV). Our dog loved it too was out in the water the whole time! Also, had fantastic weather. An amazing place. Thank you, we will be back"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Deborah Freeman, Kent</h5>
-                            <span>Sept 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"Sparkling and clean. A wonderfully appointed home for both people with dogs and children.
-Although we don't have our own dog, we could see things like a dog bed, bowls and everything else you'd need for a dog. For children, there were plastic plates, beakers, bowls and cutlery. Plus things like steps for them. The sensor night lights were a great added bonus.
-Plus there was a big box of Lego, a few kids toys and books and a few family games.
-Kitchen was well stocked with an air fryer, dishwasher and other stuff to cook with. Only thing that would've been great, would've been a plate drainer on the sink. Washer/dryer was an brilliant added feature, perfect for washing out swimming costumes and towels, which there was plenty provided. The towels were soft and smelt great. Bedrooms were comfy and beds lovely to sleep in. Amble is an amazing place. Perfect beaches and lovely scenery. Half an hour by bus to Alnwick.
-Which has a castle, museum and great shops, amongst other things. Northumberland is an absolute gem."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Anon, Confirmed Guest</h5>
-                            <span>Aug 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"The cottage was perfect in every way! Location, decor, cleanliness and the owners have obviously thought of everything that their visitors might need. A real home from home that I'd recommend to anyone. 5 out of 5"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Donna O'Doherty</h5>
-                            <span>June 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 4 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"The cottage was clean, fresh and welcoming. Everything there that we needed. Information from Sophia was clear, concise and friendly. The cottage was the best we have stayed in. All made for a perfect, relaxing sea-side break."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Anon, Confirmed Guest</h5>
-                            <span>May 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 5 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"We had a great stay. Perfect for the kids and dog. Great base to explore the amazing beaches nearby. Comfy beds and a stunning dining table."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Gary McAuley, Castleford</h5>
-                            <span>Aug 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 6 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"Beautiful cottage in a very convenient location. Amble is a lovely town with fantastic beaches."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Anon, Confirmed Guest</h5>
-                            <span>Aug 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 7 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"Gorgeous cottage. Brilliant location and exceptionally thoughtfully fitted out throughout. The sofa bed is huge and extremely comfortable so worked well with extended family staying. We had an amazing holiday."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Anon, Confirmed Guest</h5>
-                            <span>Aug 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 8 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <p class="testimonial-text">"Lovely terraced cottage, two minute walk from Main Street and five minutes from harbour. Quiet area and perfectly situated to drive off to other parts of the coast. A lovely little home from home with everything you need there."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-avatar">GN</div>
-                        <div class="testimonial-author-info">
-                            <h5>Kevin Whiting, Sunderland</h5>
-                            <span>Jul 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
+            <!-- Testimonials dynamically loaded from testimonials-data.js -->
+            <div id="all-testimonials" class="testimonials-grid reveal">
+                <!-- JavaScript will populate this -->
             </div>
         </div>
     </section>
@@ -313,7 +158,8 @@ Which has a castle, museum and great shops, amongst other things. Northumberland
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top">↑</button>
 
-    <!-- Scripts -->
+    <!-- Scripts - testimonials-data.js MUST load before main.js -->
+    <script src="js/testimonials-data.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
