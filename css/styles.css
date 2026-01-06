@@ -3,8 +3,8 @@
    Colour Palette: Deep navy, warm orange, golden yellow
    ============================================ */
 
-/* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+/* Google Fonts Import - Option 4: Plus Jakarta Sans + Nunito Sans */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 /* CSS Variables */
 :root {
@@ -29,9 +29,9 @@
     --color-gray-dark: #5a5a5a;
     --color-black: #1a1a1a;
     
-    /* Typography */
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+    /* Typography - Option 4: Modern & Approachable */
+    --font-display: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    --font-body: 'Nunito Sans', 'Segoe UI', sans-serif;
     
     /* Spacing */
     --spacing-xs: 0.5rem;
