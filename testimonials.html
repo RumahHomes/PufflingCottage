@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Read reviews from guests who have stayed at Puffling Cottage - Discover why visitors love our Northumberland holiday cottage.">
+    
     <title>Guest Testimonials | Puffling Cottage</title>
     
     <!-- Favicon -->
@@ -61,48 +62,36 @@
             <div class="section-header reveal">
                 <span class="overline">Reviews</span>
                 <h2>What Our Guests Say</h2>
-                <p class="subtitle">We're proud to share the experiences of guests who have stayed at Puffling Cottage. Their feedback means the world to us.</p>
+                <p class="subtitle">We're proud to share the experiences of guests who have stayed at Puffling Cottage. Their words mean the world to us.</p>
             </div>
             
-            <!-- Average Rating Summary -->
-            <div class="text-center reveal mb-4">
-                <div id="rating-summary" style="display: inline-flex; align-items: center; gap: var(--spacing-md); background-color: var(--color-cream-dark); padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-lg);">
-                    <div class="average-score" style="font-size: 3rem; font-weight: 700; color: var(--color-navy);">5.0</div>
-                    <div style="text-align: left;">
-                        <div class="testimonial-stars" style="margin-bottom: 4px;">
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                        </div>
-                        <div class="review-count" style="font-size: 0.9rem; color: var(--color-gray-dark);">Based on guest reviews</div>
-                    </div>
+            <!-- Rating Summary -->
+            <div class="rating-summary reveal" id="rating-summary">
+                <div class="average-score">5.0</div>
+                <div class="rating-stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
                 </div>
+                <p class="review-count">Based on 8 guest reviews</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Grid Section -->
-    <section class="section section-cream" style="padding-top: 0;">
-        <div class="container">
-            <!-- Testimonials dynamically loaded from testimonials-data.js -->
-            <div id="all-testimonials" class="testimonials-grid reveal">
-                <!-- JavaScript will populate this -->
+            
+            <!-- All Testimonials - Dynamically loaded -->
+            <div class="testimonials-grid reveal" id="all-testimonials">
+                <!-- Testimonials will be inserted here by testimonials-data.js -->
             </div>
         </div>
     </section>
 
     <!-- Call to Action -->
-    <section class="section section-dark">
+    <section class="section enquiry-section">
         <div class="container text-center">
-            <div class="reveal">
-                <h2>Ready to Create Your Own Memories?</h2>
-                <p class="subtitle" style="color: var(--color-gray-light); margin-bottom: var(--spacing-lg); max-width: 600px; margin-left: auto; margin-right: auto;">Join our happy guests and experience the magic of Northumberland's coast at Puffling Cottage.</p>
-                <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
-                    <a href="index.html#enquiry" class="btn btn-primary">Make an Enquiry</a>
-                    <a href="gallery.html" class="btn btn-secondary">View Gallery</a>
-                </div>
+            <h2>Experience It For Yourself</h2>
+            <p class="subtitle" style="color: rgba(255,255,255,0.7);">Join our growing list of happy guests and create your own Northumberland memories.</p>
+            <div class="mt-2">
+                <a href="index.html#enquiry" class="btn btn-primary">Book Your Stay</a>
             </div>
         </div>
     </section>
@@ -110,17 +99,15 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <img src="images/PuffCot_icon_2.png" alt="Puffling Cottage">
-                    </a>
-                    <p>Puffling Cottage offers a beautifully appointed holiday retreat on Northumberland's stunning coast, near the iconic Bamburgh Castle.</p>
+                    <span class="logo-text">Puffling Cottage</span>
+                    <p>A charming coastal retreat on Northumberland's stunning coastline, perfect for families, couples, and dog lovers.</p>
                 </div>
                 
-                <div class="footer-nav">
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul class="footer-links">
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="testimonials.html">Testimonials</a></li>
@@ -129,22 +116,10 @@
                     </ul>
                 </div>
                 
-                <div class="footer-nav">
-                    <h4 class="footer-heading">Explore</h4>
-                    <ul class="footer-links">
-                        <li><a href="recommendations.html">Bamburgh Castle</a></li>
-                        <li><a href="recommendations.html">Farne Islands</a></li>
-                        <li><a href="recommendations.html">Holy Island</a></li>
-                        <li><a href="recommendations.html">Local Beaches</a></li>
-                        <li><a href="recommendations.html">Restaurants</a></li>
-                    </ul>
-                </div>
-                
                 <div class="footer-contact">
-                    <h4 class="footer-heading">Contact Us</h4>
-                    <p><span class="icon">📧</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a181f070b020205070f19061e0e2a0d070b030644090507">[email&#160;protected]</a></p>
-                    <p><span class="icon">📍</span> Near Bamburgh, Northumberland</p>
-                    <p><span class="icon">🏠</span> Managed by Rumah Homes Ltd</p>
+                    <h4>Contact</h4>
+                    <p>Email: rumahhomesltd@gmail.com</p>
+                    <p>Location: Seahouses, Northumberland</p>
                 </div>
             </div>
             
@@ -158,4 +133,8 @@
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top">↑</button>
 
-    <!-- Scripts - testimonials-data.js MUST load 
+    <!-- Scripts - testimonials-data.js MUST load before main.js -->
+    <script src="js/testimonials-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

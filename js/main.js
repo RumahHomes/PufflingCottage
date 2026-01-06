@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initEnquiryForm();
     initBackToTop();
     initScrollReveal();
-    initGalleryFilters();
 });
 
 /* ============================================
@@ -22,22 +21,35 @@ function initNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
     const navList = document.querySelector('.nav-list');
     
-    // Mobile menu toggle
+    // Header scroll effect
+    function handleScroll() {
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+    
+    // Mobile navigation toggle
     if (navToggle && navList) {
         navToggle.addEventListener('click', function() {
             navList.classList.toggle('active');
             navToggle.classList.toggle('active');
             
-            // Toggle aria-expanded
+            // Update ARIA attribute
             const isExpanded = navList.classList.contains('active');
             navToggle.setAttribute('aria-expanded', isExpanded);
         });
         
-        // Close menu when clicking a link
+        // Close menu when clicking on a link
         navList.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function() {
                 navList.classList.remove('active');
                 navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
             });
         });
         
@@ -46,42 +58,10 @@ function initNavigation() {
             if (!navToggle.contains(e.target) && !navList.contains(e.target)) {
                 navList.classList.remove('active');
                 navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
             }
         });
     }
-    
-    // Header scroll effect
-    if (header) {
-        let lastScroll = 0;
-        
-        window.addEventListener('scroll', function() {
-            const currentScroll = window.pageYOffset;
-            
-            // Add/remove scrolled class
-            if (currentScroll > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            
-            lastScroll = currentScroll;
-        });
-    }
-    
-    // Set active nav link based on current page
-    setActiveNavLink();
-}
-
-function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-            link.classList.add('active');
-        }
-    });
 }
 
 /* ============================================
@@ -92,21 +72,19 @@ function initScrollEffects() {
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             
-            if (href !== '#') {
+            const target = document.querySelector(targetId);
+            if (target) {
                 e.preventDefault();
-                const target = document.querySelector(href);
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
                 
-                if (target) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
         });
     });
@@ -129,26 +107,17 @@ function initLightbox() {
     let galleryItems = [];
     let currentIndex = 0;
     
-    // Get all gallery items
+    // Update gallery items array
     function updateGalleryItems() {
         galleryItems = Array.from(document.querySelectorAll('.gallery-item[data-lightbox]'));
     }
     
     // Open lightbox
     function openLightbox(index) {
-        updateGalleryItems();
-        if (galleryItems.length === 0) return;
-        
         currentIndex = index;
-        const item = galleryItems[currentIndex];
-        const imgSrc = item.dataset.lightbox || item.querySelector('img').src;
-        const caption = item.dataset.caption || '';
-        
-        lightboxImg.src = imgSrc;
-        lightboxCaption.textContent = caption;
-        
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
+        showImage(currentIndex);
     }
     
     // Close lightbox
@@ -160,18 +129,18 @@ function initLightbox() {
     // Navigate to previous image
     function prevImage() {
         currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-        const item = galleryItems[currentIndex];
-        const imgSrc = item.dataset.lightbox || item.querySelector('img').src;
-        const caption = item.dataset.caption || '';
-        
-        lightboxImg.src = imgSrc;
-        lightboxCaption.textContent = caption;
+        showImage(currentIndex);
     }
     
     // Navigate to next image
     function nextImage() {
         currentIndex = (currentIndex + 1) % galleryItems.length;
-        const item = galleryItems[currentIndex];
+        showImage(currentIndex);
+    }
+    
+    // Show image at index
+    function showImage(index) {
+        const item = galleryItems[index];
         const imgSrc = item.dataset.lightbox || item.querySelector('img').src;
         const caption = item.dataset.caption || '';
         
@@ -266,6 +235,7 @@ function initEnquiryForm() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             showNotification('Please enter a valid email address.', 'error');
+            form.querySelector('[name="email"]').classList.add('error');
             return;
         }
         
@@ -276,7 +246,7 @@ function initEnquiryForm() {
         today.setHours(0, 0, 0, 0);
         
         if (arrival < today) {
-            showNotification('Arrival date cannot be in the past.', 'error');
+            showNotification('Arrival date must be in the future.', 'error');
             return;
         }
         
@@ -285,20 +255,51 @@ function initEnquiryForm() {
             return;
         }
         
+        // Format dates for email
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const arrivalFormatted = arrival.toLocaleDateString('en-GB', options);
+        const departureFormatted = departure.toLocaleDateString('en-GB', options);
+        
+        // Calculate number of nights
+        const nights = Math.ceil((departure - arrival) / (1000 * 60 * 60 * 24));
+        
         // Build email content
-        const subject = encodeURIComponent(`Puffling Cottage Enquiry - ${data.firstName} ${data.lastName}`);
-        const body = buildEmailBody(data);
+        const subject = `Puffling Cottage Enquiry - ${data.firstName} ${data.lastName}`;
+        const body = `
+New Booking Enquiry for Puffling Cottage
+
+Guest Details:
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+Phone: ${data.phone || 'Not provided'}
+
+Stay Details:
+Arrival: ${arrivalFormatted}
+Departure: ${departureFormatted}
+Duration: ${nights} night${nights > 1 ? 's' : ''}
+
+Party:
+Adults: ${data.adults || 1}
+Children: ${data.children || 0}
+Dogs: ${data.dogs || 0}
+
+Special Requests:
+${data.requests || 'None'}
+        `.trim();
+        
+        // Create mailto link
+        const mailtoLink = `mailto:rumahhomesltd@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         
         // Open email client
-        window.location.href = `mailto:rumahhomesltd@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = mailtoLink;
         
         // Show success message
-        showNotification('Thank you for your enquiry! Your email client should open shortly.', 'success');
+        showNotification('Opening your email client... Please send the email to complete your enquiry.', 'success');
         
-        // Reset form after a delay
+        // Reset form after delay
         setTimeout(() => {
             form.reset();
-        }, 2000);
+        }, 1000);
     });
     
     // Remove error class on input
@@ -309,51 +310,12 @@ function initEnquiryForm() {
     });
 }
 
-function buildEmailBody(data) {
-    const lines = [
-        'PUFFLING COTTAGE BOOKING ENQUIRY',
-        '================================',
-        '',
-        'GUEST DETAILS:',
-        `Name: ${data.firstName} ${data.lastName}`,
-        `Email: ${data.email}`,
-        data.phone ? `Phone: ${data.phone}` : '',
-        '',
-        'BOOKING DETAILS:',
-        `Arrival Date: ${formatDate(data.arrivalDate)}`,
-        `Departure Date: ${formatDate(data.departureDate)}`,
-        `Number of Nights: ${calculateNights(data.arrivalDate, data.departureDate)}`,
-        '',
-        'PARTY COMPOSITION:',
-        `Adults: ${data.adults || 0}`,
-        `Children: ${data.children || 0}`,
-        `Dogs: ${data.dogs || 0}`,
-        '',
-        'SPECIAL REQUESTS:',
-        data.requests || 'None specified',
-        '',
-        '================================',
-        'Sent via Puffling Cottage Website'
-    ];
-    
-    return encodeURIComponent(lines.filter(line => line !== '').join('\n'));
-}
+/* ============================================
+   NOTIFICATIONS
+   ============================================ */
 
-function formatDate(dateString) {
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-GB', options);
-}
-
-function calculateNights(arrival, departure) {
-    const arrivalDate = new Date(arrival);
-    const departureDate = new Date(departure);
-    const diffTime = Math.abs(departureDate - arrivalDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-}
-
-function showNotification(message, type) {
-    // Remove existing notifications
+function showNotification(message, type = 'success') {
+    // Remove existing notification
     const existing = document.querySelector('.notification');
     if (existing) {
         existing.remove();
@@ -361,73 +323,24 @@ function showNotification(message, type) {
     
     // Create notification element
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <span>${message}</span>
-        <button class="notification-close" aria-label="Close">&times;</button>
-    `;
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
     
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        background-color: ${type === 'success' ? '#27ae60' : '#e74c3c'};
-        color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        z-index: 9999;
-        animation: slideIn 0.3s ease;
-    `;
-    
-    // Add close functionality
-    notification.querySelector('.notification-close').addEventListener('click', () => {
-        notification.remove();
-    });
-    
-    // Add to page
     document.body.appendChild(notification);
     
-    // Auto remove after 5 seconds
+    // Trigger animation
     setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }
+        notification.classList.add('show');
+    }, 10);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 5000);
 }
-
-// Add notification animations
-const notificationStyles = document.createElement('style');
-notificationStyles.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-    }
-    .notification-close {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0;
-        line-height: 1;
-    }
-    .form-group input.error,
-    .form-group select.error,
-    .form-group textarea.error {
-        border-color: #e74c3c;
-    }
-`;
-document.head.appendChild(notificationStyles);
 
 /* ============================================
    BACK TO TOP BUTTON
@@ -438,13 +351,15 @@ function initBackToTop() {
     if (!backToTop) return;
     
     // Show/hide button based on scroll position
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
+    function toggleBackToTop() {
+        if (window.scrollY > 500) {
             backToTop.classList.add('visible');
         } else {
             backToTop.classList.remove('visible');
         }
-    });
+    }
+    
+    window.addEventListener('scroll', toggleBackToTop);
     
     // Scroll to top on click
     backToTop.addEventListener('click', function() {
@@ -456,31 +371,27 @@ function initBackToTop() {
 }
 
 /* ============================================
-   SCROLL REVEAL
+   SCROLL REVEAL ANIMATIONS
    ============================================ */
 
 function initScrollReveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    if (reveals.length === 0) return;
+    const revealElements = document.querySelectorAll('.reveal');
     
-    const revealOnScroll = () => {
+    function revealOnScroll() {
         const windowHeight = window.innerHeight;
-        const revealPoint = 100;
+        const revealPoint = 150;
         
-        reveals.forEach(element => {
+        revealElements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
             
             if (elementTop < windowHeight - revealPoint) {
-                element.classList.add('visible');
+                element.classList.add('active');
             }
         });
-    };
+    }
     
-    // Check on load
-    revealOnScroll();
-    
-    // Check on scroll
     window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Check initial state
 }
 
 /* ============================================
@@ -491,66 +402,24 @@ function initGalleryFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
     
-    if (filterBtns.length === 0) return;
+    if (!filterBtns.length) return;
     
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            
             // Update active button
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
-            // Get filter category
-            const filter = this.dataset.filter;
-            
-            // Filter gallery items
+            // Filter items
             galleryItems.forEach(item => {
                 if (filter === 'all' || item.dataset.category === filter) {
-                    item.style.display = 'block';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'scale(1)';
-                    }, 10);
+                    item.style.display = '';
                 } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.8)';
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
+                    item.style.display = 'none';
                 }
             });
         });
     });
 }
-
-/* ============================================
-   LAZY LOADING IMAGES
-   ============================================ */
-
-function initLazyLoading() {
-    const lazyImages = document.querySelectorAll('img[data-src]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    observer.unobserve(img);
-                }
-            });
-        }, {
-            rootMargin: '50px 0px'
-        });
-        
-        lazyImages.forEach(img => imageObserver.observe(img));
-    } else {
-        // Fallback for older browsers
-        lazyImages.forEach(img => {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-        });
-    }
-}
-
-document.addEventListener('DOMContentLoaded', initLazyLoading);
