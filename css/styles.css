@@ -982,7 +982,8 @@ p {
     transform: scale(1.05);
 }
 
-.recommendation-category {
+/* Category badge/label on recommendation cards (not the section wrapper) */
+.recommendation-badge {
     position: absolute;
     top: var(--spacing-sm);
     left: var(--spacing-sm);
@@ -1023,12 +1024,149 @@ p {
     gap: 4px;
 }
 
+/* Recommendation cards without images */
+.recommendation-card:not(:has(.recommendation-image)) {
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendation-card:not(:has(.recommendation-image)) .recommendation-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Fallback for browsers without :has() support */
+.recommendation-card .recommendation-content:first-child {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+}
+
+/* ============================================
+   RECOMMENDATIONS PAGE - Category Sections
+   ============================================ */
+
+.recommendation-category {
+    margin-bottom: var(--spacing-xl);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-orange);
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.category-header h3 {
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+/* ============================================
+   TESTIMONIALS PAGE - Rating Summary
+   ============================================ */
+
+.rating-summary {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-xl);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rating-summary .average-score {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    line-height: 1;
+    margin-bottom: var(--spacing-sm);
+}
+
+.rating-summary .rating-stars {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.rating-summary .rating-stars .star {
+    color: var(--color-yellow);
+    font-size: 1.5rem;
+}
+
+.rating-summary .review-count {
+    color: var(--color-gray);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* ============================================
+   ABOUT PAGE - Amenities Grid
+   ============================================ */
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.amenity-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-md);
+    background-color: var(--color-cream);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.amenity-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.amenity-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.amenity-item span:last-child {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-navy);
+}
+
 /* ============================================
    ENQUIRY FORM
    ============================================ */
 
 .enquiry-section {
     background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+}
+
+/* Fix heading and text colors in enquiry/CTA sections */
+.enquiry-section h2,
+.enquiry-section .container h2 {
+    color: #ffffff !important;
+}
+
+.enquiry-section .subtitle,
+.enquiry-section p.subtitle {
+    color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* Two-column layout wrapper */
