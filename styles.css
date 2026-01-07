@@ -982,7 +982,8 @@ p {
     transform: scale(1.05);
 }
 
-.recommendation-category {
+/* Category badge/label on recommendation cards (not the section wrapper) */
+.recommendation-badge {
     position: absolute;
     top: var(--spacing-sm);
     left: var(--spacing-sm);
@@ -1158,12 +1159,14 @@ p {
 }
 
 /* Fix heading and text colors in enquiry/CTA sections */
-.enquiry-section h2 {
-    color: var(--color-white);
+.enquiry-section h2,
+.enquiry-section .container h2 {
+    color: #ffffff !important;
 }
 
-.enquiry-section .subtitle {
-    color: rgba(255, 255, 255, 0.85);
+.enquiry-section .subtitle,
+.enquiry-section p.subtitle {
+    color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* Two-column layout wrapper */
