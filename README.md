@@ -12,9 +12,9 @@ This version uses **Option 4** fonts:
 
 ```
 puffling-cottage/
-├── index.html              # Homepage
+├── index.html              # Homepage (6 feature cards including Food Heaven & Activity Variety)
 ├── gallery.html            # Photo gallery
-├── testimonials.html       # Guest reviews (dynamically loaded)
+├── testimonials.html       # Guest reviews (masonry-style layout)
 ├── recommendations.html    # Things to do
 ├── about.html              # About the cottage
 ├── css/
@@ -29,18 +29,25 @@ puffling-cottage/
 
 Add the following images to the `/images/` folder:
 
-1. **PuffCot_icon_2.png** - Logo/favicon (used throughout)
-2. **IMG_1906.JPG** - Bamburgh Castle (hero background)
-3. **IMG_1848.JPG** - Beach scene
-4. **IMG_1849.JPG** - Coastal walk
-5. **IMG_1916.JPG** - Castle views
-6. **IMG_1920.JPG** - Local scenery / Dunstanburgh
-7. **IMG_1941.JPG** - Northumberland coast
-8. **IMG_1944.JPG** - Stunning views / Holy Island
-9. **IMG_0828.JPG** - Master bedroom
-10. **IMG_0831.JPG** - Second bedroom
-11. **IMG_0832.JPG** - Bedroom details
-12. **FullSizeRender_7.jpeg** - Living room
+1. **New PuffCo Icon No Background 1.png** - Logo/favicon (used throughout)
+2. **Amble Pier Night Landscape.jpeg** - Hero background
+3. **IMG_1906.JPG** - Bamburgh Castle
+4. **IMG_1848.JPG** - Beach scene
+5. **IMG_1849.JPG** - Coastal walk
+6. **IMG_1916.JPG** - Castle views
+7. **IMG_1920.JPG** - Local scenery / Dunstanburgh
+8. **IMG_1941.JPG** - Northumberland coast
+9. **IMG_1944.JPG** - Stunning views / Holy Island
+10. **IMG_0828.JPG** - Master bedroom
+11. **IMG_0831.JPG** - Second bedroom
+12. **IMG_0832.JPG** - Bedroom details
+13. **FullSizeRender_7.jpeg** - Living room
+14. **Castle_Views_Image_1.JPG** - Feature card image
+15. **Pristine_Beaches_Image_1.JPG** - Feature card image
+16. **Dog_Friendly_Image_1.JPG** - Feature card image
+17. **Puffin_Paradise_Image_1.JPG** - Feature card image
+18. **Food_Heaven_Image_1.JPG** - Feature card image (NEW)
+19. **Activity_Variety_Image_1.JPG** - Feature card image (NEW)
 
 ## Adding New Testimonials
 
