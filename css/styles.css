@@ -528,6 +528,15 @@ p {
     color: var(--color-gray-light);
 }
 
+/* Direct h2 and subtitle styling for enquiry-section (without section-header wrapper) */
+.enquiry-section h2 {
+    color: var(--color-white);
+}
+
+.enquiry-section .subtitle {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 /* Decorative Divider */
 .divider {
     display: flex;
