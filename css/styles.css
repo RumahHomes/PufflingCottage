@@ -1037,7 +1037,8 @@ p {
     transform: scale(1.05);
 }
 
-.recommendation-category {
+/* Small badge/label for recommendation cards (optional use) */
+.recommendation-badge {
     position: absolute;
     top: var(--spacing-sm);
     left: var(--spacing-sm);
@@ -1049,6 +1050,11 @@ p {
     letter-spacing: 1px;
     padding: 4px 12px;
     border-radius: var(--radius-sm);
+}
+
+/* Section wrapper for recommendation categories (Castles, Nature, Food, etc.) */
+.recommendation-section {
+    margin-bottom: var(--spacing-lg);
 }
 
 .recommendation-content {
