@@ -3,212 +3,1535 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Photo gallery of Puffling Cottage - Browse images of our beautiful Northumberland holiday cottage and the stunning local area.">
+    <title>Photo Gallery | Puffling Cottage - Northumberland Holiday Rental</title>
     
-    <title>Gallery | Puffling Cottage</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/New PuffCo Icon No Background 1.png">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ============================================
+           CSS VARIABLES - Site Color Palette
+           ============================================ */
+        :root {
+            --navy: #1a2634;
+            --navy-light: #243447;
+            --orange: #e67e22;
+            --orange-hover: #d35400;
+            --yellow: #f1c40f;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --grey-light: #e9ecef;
+            --grey-text: #555555;
+            --grey-dark: #333333;
+            
+            /* Typography */
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Nunito Sans', sans-serif;
+        }
+        
+        /* ============================================
+           BASE RESET & GLOBAL STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--grey-dark);
+            background-color: var(--off-white);
+            line-height: 1.6;
+        }
+        
+        /* ============================================
+           NAVIGATION HEADER
+           ============================================ */
+        .header {
+            background: var(--navy);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo:hover {
+            color: var(--yellow);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--yellow);
+        }
+        
+        /* Mobile menu toggle */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        
+        /* ============================================
+           PAGE HERO SECTION
+           ============================================ */
+        .page-hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 60px 24px;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        
+        .page-hero h1 span {
+            color: var(--yellow);
+        }
+        
+        .page-hero p {
+            font-family: var(--font-body);
+            font-size: 18px;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* ============================================
+           GALLERY SECTION NAVIGATION (Jump Links)
+           ============================================ */
+        .section-nav {
+            background: var(--white);
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--grey-light);
+            position: sticky;
+            top: 68px;
+            z-index: 999;
+        }
+        
+        .section-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .section-nav a {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            background: var(--grey-light);
+            transition: all 0.3s ease;
+        }
+        
+        .section-nav a:hover {
+            background: var(--orange);
+            color: var(--white);
+        }
+        
+        /* ============================================
+           GALLERY MAIN CONTENT
+           ============================================ */
+        .gallery-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+        
+        /* Individual Gallery Section */
+        .gallery-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 160px; /* Offset for sticky headers */
+        }
+        
+        .gallery-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--orange);
+        }
+        
+        .section-number {
+            background: var(--navy);
+            color: var(--yellow);
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: -0.3px;
+        }
+        
+        .section-description {
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: var(--grey-text);
+            margin-bottom: 24px;
+            max-width: 800px;
+        }
+        
+        /* ============================================
+           PHOTO GRID
+           ============================================ */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        
+        /* Individual Photo Item */
+        .photo-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Placeholder styling for images not yet added */
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--grey-light) 0%, #d1d5db 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--grey-text);
+        }
+        
+        .photo-placeholder svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+        
+        .photo-placeholder span {
+            font-family: var(--font-body);
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        
+        /* Photo Caption Overlay (appears on hover) */
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(26,38,52,0.95) 0%, rgba(26,38,52,0.7) 60%, transparent 100%);
+            padding: 40px 16px 16px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        .photo-caption h4 {
+            font-family: var(--font-heading);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        
+        .photo-caption p {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+        
+        /* ============================================
+           LIGHTBOX MODAL
+           ============================================ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
+        
+        .lightbox-caption {
+            text-align: center;
+            margin-top: 16px;
+        }
+        
+        .lightbox-caption h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+        
+        .lightbox-caption p {
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 32px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            padding: 16px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--navy);
+            padding: 40px 24px;
+            text-align: center;
+        }
+        
+        .footer p {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .footer a {
+            color: var(--yellow);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 1200px) {
+            .photo-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-header h2 {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            /* Mobile navigation */
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy-light);
+                flex-direction: column;
+                padding: 16px 24px;
+                gap: 16px;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            /* Section nav scrollable */
+            .section-nav-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 8px;
+            }
+            
+            .section-nav a {
+                white-space: nowrap;
+            }
+            
+            /* Page hero */
+            .page-hero h1 {
+                font-size: 32px;
+            }
+            
+            .page-hero p {
+                font-size: 16px;
+            }
+            
+            /* Photo grid */
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            /* Show captions always on mobile (no hover) */
+            .photo-caption {
+                transform: translateY(0);
+                padding: 30px 12px 12px;
+            }
+            
+            .photo-caption h4 {
+                font-size: 13px;
+            }
+            
+            .photo-caption p {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header scrolled">
-        <div class="header-inner">
-            <a href="index.html" class="logo">
-                <img src="images/New PuffCo Icon No Background 1.png" alt="Puffling Cottage Logo">
-                <span class="logo-text">Puffling Cottage</span>
-            </a>
+    <!-- ============================================
+         NAVIGATION HEADER
+         ============================================ -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Puffling Cottage</a>
             
-            <nav class="nav">
-                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
-                    <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
-                    <li><a href="recommendations.html" class="nav-link">Things to Do</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="index.html#enquiry" class="nav-link">Enquire</a></li>
-                </ul>
-            </nav>
-        </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="testimonials.html">Reviews</a></li>
+                <li><a href="local-recommendations.html">Local Guide</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="page-header-background">
-            <img src="images/Amble Pier Night Landscape.jpeg" alt="Amble-By-The-Sea Pier">
-        </div>
-        <div class="page-header-content">
-            <h1>Photo Gallery</h1>
-            <div class="breadcrumb">
-                <a href="index.html">Home</a>
-                <span>/</span>
-                <span>Gallery</span>
-            </div>
-        </div>
+    
+    <!-- ============================================
+         PAGE HERO
+         ============================================ -->
+    <section class="page-hero">
+        <h1>Photo <span>Gallery</span></h1>
+        <p>Explore our coastal retreat and the stunning Northumberland landscapes that await you</p>
     </section>
-
-    <!-- Gallery Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="overline">Explore</span>
-                <h2>The Cottage & Surroundings</h2>
-                <p class="subtitle">Take a virtual tour of Puffling Cottage and discover the beauty of Northumberland's coastline.</p>
+    
+    <!-- ============================================
+         SECTION NAVIGATION (Jump Links)
+         ============================================ -->
+    <nav class="section-nav">
+        <div class="section-nav-container">
+            <a href="#cottage">The Cottage</a>
+            <a href="#amble">Amble & Vicinity</a>
+            <a href="#coastline">Coastline & Castles</a>
+            <a href="#cheviots">Cheviots & Interior</a>
+            <a href="#towns">Market Towns</a>
+            <a href="#additional">Places of Interest</a>
+        </div>
+    </nav>
+    
+    <!-- ============================================
+         GALLERY MAIN CONTENT
+         ============================================ -->
+    <main class="gallery-main">
+        
+        <!-- ========================================
+             SECTION 1: THE COTTAGE
+             ======================================== -->
+        <section id="cottage" class="gallery-section">
+            <div class="section-header">
+                <span class="section-number">1</span>
+                <h2>The Cottage</h2>
             </div>
+            <p class="section-description">Step inside Puffling Cottage and discover a cosy, beautifully appointed retreat designed for comfort and relaxation.</p>
             
-            <div class="gallery-grid reveal">
-                <!-- Living Area -->
-                <div class="gallery-item" data-lightbox="images/FullSizeRender_7.jpeg" data-caption="Cosy Living Room" data-category="interior">
-                    <img src="images/FullSizeRender_7.jpeg" alt="Cosy Living Room">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Cosy Living Room</span>
+            <div class="photo-grid">
+                <!-- Photo 1.1 -->
+                <div class="photo-item" onclick="openLightbox(0)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Cottage Exterior</h4>
+                        <p>The welcoming front entrance of Puffling Cottage</p>
                     </div>
                 </div>
                 
-                <!-- Bedrooms -->
-                <div class="gallery-item" data-lightbox="images/IMG_0828.JPG" data-caption="Master Bedroom" data-category="interior">
-                    <img src="images/IMG_0828.JPG" alt="Master Bedroom">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Master Bedroom</span>
+                <!-- Photo 1.2 -->
+                <div class="photo-item" onclick="openLightbox(1)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Living Room</h4>
+                        <p>Spacious lounge with comfortable seating and sea views</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item" data-lightbox="images/IMG_0831.JPG" data-caption="Second Bedroom" data-category="interior">
-                    <img src="images/IMG_0831.JPG" alt="Second Bedroom">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Second Bedroom</span>
+                <!-- Photo 1.3 -->
+                <div class="photo-item" onclick="openLightbox(2)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Kitchen</h4>
+                        <p>Fully equipped modern kitchen with all amenities</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item" data-lightbox="images/IMG_0832.JPG" data-caption="Bedroom Details" data-category="interior">
-                    <img src="images/IMG_0832.JPG" alt="Bedroom Details">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Bedroom Details</span>
+                <!-- Photo 1.4 -->
+                <div class="photo-item" onclick="openLightbox(3)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Master Bedroom</h4>
+                        <p>King-size bed with quality linens and storage</p>
                     </div>
                 </div>
                 
-                <!-- Exterior & Local Area -->
-                <div class="gallery-item" data-lightbox="images/IMG_1848.JPG" data-caption="Beautiful Beach" data-category="exterior">
-                    <img src="images/IMG_1848.JPG" alt="Beautiful Beach">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Beautiful Beach</span>
+                <!-- Photo 1.5 -->
+                <div class="photo-item" onclick="openLightbox(4)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Second Bedroom</h4>
+                        <p>Twin room perfect for children or additional guests</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item" data-lightbox="images/IMG_1849.JPG" data-caption="Coastal Walk" data-category="exterior">
-                    <img src="images/IMG_1849.JPG" alt="Coastal Walk">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Coastal Walk</span>
+                <!-- Photo 1.6 -->
+                <div class="photo-item" onclick="openLightbox(5)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Bathroom</h4>
+                        <p>Modern bathroom with shower and coastal touches</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item" data-lightbox="images/IMG_1906.JPG" data-caption="Bamburgh Castle" data-category="exterior">
-                    <img src="images/IMG_1906.JPG" alt="Bamburgh Castle">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Bamburgh Castle</span>
+                <!-- Photo 1.7 -->
+                <div class="photo-item" onclick="openLightbox(6)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Garden Area</h4>
+                        <p>Private outdoor space with seating and BBQ</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item" data-lightbox="images/IMG_1916.JPG" data-caption="Castle Views" data-category="exterior">
-                    <img src="images/IMG_1916.JPG" alt="Castle Views">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Castle Views</span>
+                <!-- Photo 1.8 -->
+                <div class="photo-item" onclick="openLightbox(7)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
                     </div>
-                </div>
-                
-                <div class="gallery-item" data-lightbox="images/IMG_1920.JPG" data-caption="Local Scenery" data-category="exterior">
-                    <img src="images/IMG_1920.JPG" alt="Local Scenery">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Local Scenery</span>
-                    </div>
-                </div>
-                
-                <div class="gallery-item" data-lightbox="images/IMG_1941.JPG" data-caption="Northumberland Coast" data-category="exterior">
-                    <img src="images/IMG_1941.JPG" alt="Northumberland Coast">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Northumberland Coast</span>
-                    </div>
-                </div>
-                
-                <div class="gallery-item" data-lightbox="images/IMG_1944.JPG" data-caption="Stunning Views" data-category="exterior">
-                    <img src="images/IMG_1944.JPG" alt="Stunning Views">
-                    <div class="gallery-item-overlay">
-                        <span class="gallery-item-caption">Stunning Views</span>
+                    <div class="photo-caption">
+                        <h4>Dining Area</h4>
+                        <p>Cosy dining space for family meals together</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="section enquiry-section">
-        <div class="container text-center">
-            <h2>Ready to Book Your Stay?</h2>
-            <p class="subtitle" style="color: rgba(255,255,255,0.7);">Experience the beauty of Northumberland for yourself.</p>
-            <div class="mt-2">
-                <a href="index.html#enquiry" class="btn btn-primary">Make an Enquiry</a>
+        </section>
+        
+        <!-- ========================================
+             SECTION 2: AMBLE & IMMEDIATE VICINITY
+             ======================================== -->
+        <section id="amble" class="gallery-section">
+            <div class="section-header">
+                <span class="section-number">2</span>
+                <h2>Amble & Immediate Vicinity</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-text">Puffling Cottage</span>
-                    <p>A charming, luxury cottage retreat on Northumberland's stunning coastline, perfect for families, couples, and dog lovers.</p>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="testimonials.html">Testimonials</a></li>
-                        <li><a href="recommendations.html">Things to Do</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p>Email: rumahhomesltd@gmail.com</p>
-                    <p>Location: Amble-By-The-Sea, Northumberland</p>
-                </div>
-            </div>
+            <p class="section-description">Our charming coastal town offers harbour walks, independent shops, and the gateway to Coquet Island where puffins nest.</p>
             
-            <div class="footer-bottom">
-                <p>&copy; 2026 Puffling Cottage. All rights reserved.</p>
-                <p>A <a href="#">Rumah Homes</a> Property</p>
+            <div class="photo-grid">
+                <!-- Photo 2.1 -->
+                <div class="photo-item" onclick="openLightbox(8)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Amble Harbour</h4>
+                        <p>Working fishing harbour with fresh seafood available</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 2.2 -->
+                <div class="photo-item" onclick="openLightbox(9)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Coquet Island View</h4>
+                        <p>Home to thousands of puffins during breeding season</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 2.3 -->
+                <div class="photo-item" onclick="openLightbox(10)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Warkworth Beach</h4>
+                        <p>Miles of pristine golden sand just minutes away</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 2.4 -->
+                <div class="photo-item" onclick="openLightbox(11)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Harbour Village</h4>
+                        <p>Award-winning shops and restaurants at the waterfront</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 2.5 -->
+                <div class="photo-item" onclick="openLightbox(12)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Puffin Cruises</h4>
+                        <p>Boat trips to see puffins up close (April-July)</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 2.6 -->
+                <div class="photo-item" onclick="openLightbox(13)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Little Shore</h4>
+                        <p>Sheltered cove perfect for paddling and rock pools</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 2.7 -->
+                <div class="photo-item" onclick="openLightbox(14)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Dog-Friendly Beach</h4>
+                        <p>Wide open spaces for four-legged friends to explore</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 2.8 -->
+                <div class="photo-item" onclick="openLightbox(15)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Sunrise at Amble</h4>
+                        <p>Spectacular dawn views over the North Sea</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox">
+        </section>
+        
+        <!-- ========================================
+             SECTION 3: COASTLINE & CASTLES
+             ======================================== -->
+        <section id="coastline" class="gallery-section">
+            <div class="section-header">
+                <span class="section-number">3</span>
+                <h2>Coastline & Castles</h2>
+            </div>
+            <p class="section-description">Northumberland boasts more castles than any other English county, set against a dramatic coastline designated an Area of Outstanding Natural Beauty.</p>
+            
+            <div class="photo-grid">
+                <!-- Photo 3.1 -->
+                <div class="photo-item" onclick="openLightbox(16)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Warkworth Castle</h4>
+                        <p>Magnificent medieval fortress overlooking the Coquet</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 3.2 -->
+                <div class="photo-item" onclick="openLightbox(17)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Bamburgh Castle</h4>
+                        <p>Iconic fortress rising above golden sands</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 3.3 -->
+                <div class="photo-item" onclick="openLightbox(18)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Dunstanburgh Castle</h4>
+                        <p>Dramatic ruins reached only on foot across clifftops</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 3.4 -->
+                <div class="photo-item" onclick="openLightbox(19)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Alnwick Castle</h4>
+                        <p>The real Hogwarts - Harry Potter filming location</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 3.5 -->
+                <div class="photo-item" onclick="openLightbox(20)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Holy Island</h4>
+                        <p>Lindisfarne - tidal island with ancient priory</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 3.6 -->
+                <div class="photo-item" onclick="openLightbox(21)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Seahouses</h4>
+                        <p>Gateway to the Farne Islands and seal watching</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 3.7 -->
+                <div class="photo-item" onclick="openLightbox(22)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Craster</h4>
+                        <p>Famous for kippers and stunning coastal walks</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 3.8 -->
+                <div class="photo-item" onclick="openLightbox(23)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Low Newton Beach</h4>
+                        <p>Secluded bay with The Ship Inn nearby</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ========================================
+             SECTION 4: CHEVIOTS & THE INTERIOR
+             ======================================== -->
+        <section id="cheviots" class="gallery-section">
+            <div class="section-header">
+                <span class="section-number">4</span>
+                <h2>Cheviots & The Interior</h2>
+            </div>
+            <p class="section-description">Venture inland to discover rolling hills, ancient forests, and the wild beauty of Northumberland National Park and the Dark Sky Reserve.</p>
+            
+            <div class="photo-grid">
+                <!-- Photo 4.1 -->
+                <div class="photo-item" onclick="openLightbox(24)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>The Cheviot</h4>
+                        <p>Highest peak in Northumberland at 815 metres</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 4.2 -->
+                <div class="photo-item" onclick="openLightbox(25)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Hadrian's Wall</h4>
+                        <p>UNESCO World Heritage Roman frontier</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 4.3 -->
+                <div class="photo-item" onclick="openLightbox(26)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Dark Sky Park</h4>
+                        <p>Europe's largest Dark Sky Reserve for stargazing</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 4.4 -->
+                <div class="photo-item" onclick="openLightbox(27)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Coquetdale Valley</h4>
+                        <p>Tranquil river valley with beautiful walking routes</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 4.5 -->
+                <div class="photo-item" onclick="openLightbox(28)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Kielder Forest</h4>
+                        <p>England's largest forest - 250 square miles of wilderness</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 4.6 -->
+                <div class="photo-item" onclick="openLightbox(29)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Kielder Water</h4>
+                        <p>Northern Europe's largest man-made lake</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 4.7 -->
+                <div class="photo-item" onclick="openLightbox(30)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Sycamore Gap</h4>
+                        <p>The famous Robin Hood tree at Hadrian's Wall</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 4.8 -->
+                <div class="photo-item" onclick="openLightbox(31)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>College Valley</h4>
+                        <p>Remote and unspoilt walking in the Cheviots</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ========================================
+             SECTION 5: MARKET TOWNS
+             ======================================== -->
+        <section id="towns" class="gallery-section">
+            <div class="section-header">
+                <span class="section-number">5</span>
+                <h2>Market Towns</h2>
+            </div>
+            <p class="section-description">Historic market towns offer independent shops, cosy pubs, and authentic Northumbrian hospitality just a short drive away.</p>
+            
+            <div class="photo-grid">
+                <!-- Photo 5.1 -->
+                <div class="photo-item" onclick="openLightbox(32)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Alnwick</h4>
+                        <p>Market town with castle, gardens and Barter Books</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 5.2 -->
+                <div class="photo-item" onclick="openLightbox(33)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Warkworth Village</h4>
+                        <p>Picturesque village with castle views and riverside walks</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 5.3 -->
+                <div class="photo-item" onclick="openLightbox(34)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Morpeth</h4>
+                        <p>County town with weekly market and riverside setting</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 5.4 -->
+                <div class="photo-item" onclick="openLightbox(35)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Rothbury</h4>
+                        <p>Gateway to the Cheviots with Cragside nearby</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 5.5 -->
+                <div class="photo-item" onclick="openLightbox(36)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Hexham</h4>
+                        <p>Historic abbey town with excellent cafés and shops</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 5.6 -->
+                <div class="photo-item" onclick="openLightbox(37)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Corbridge</h4>
+                        <p>Roman heritage and a thriving high street</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 5.7 -->
+                <div class="photo-item" onclick="openLightbox(38)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Wooler</h4>
+                        <p>Quiet market town at the foot of the Cheviots</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 5.8 -->
+                <div class="photo-item" onclick="openLightbox(39)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Berwick-upon-Tweed</h4>
+                        <p>Border town with Elizabethan walls and bridges</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ========================================
+             SECTION 6: ADDITIONAL PLACES OF INTEREST
+             ======================================== -->
+        <section id="additional" class="gallery-section">
+            <div class="section-header">
+                <span class="section-number">6</span>
+                <h2>Additional Places of Interest</h2>
+            </div>
+            <p class="section-description">Beyond the classics, Northumberland has countless hidden gems, gardens, historic houses and experiences waiting to be discovered.</p>
+            
+            <div class="photo-grid">
+                <!-- Photo 6.1 -->
+                <div class="photo-item" onclick="openLightbox(40)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Alnwick Garden</h4>
+                        <p>One of the world's most extraordinary gardens</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 6.2 -->
+                <div class="photo-item" onclick="openLightbox(41)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Cragside</h4>
+                        <p>First house in the world lit by hydroelectricity</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 6.3 -->
+                <div class="photo-item" onclick="openLightbox(42)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Barter Books</h4>
+                        <p>One of Britain's largest second-hand bookshops</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 6.4 -->
+                <div class="photo-item" onclick="openLightbox(43)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Vindolanda</h4>
+                        <p>Roman fort with ongoing archaeological discoveries</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 6.5 -->
+                <div class="photo-item" onclick="openLightbox(44)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Farne Islands</h4>
+                        <p>Seabird sanctuary with seals and St Cuthbert's chapel</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 6.6 -->
+                <div class="photo-item" onclick="openLightbox(45)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Chillingham Castle</h4>
+                        <p>Britain's most haunted castle and wild cattle</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 6.7 -->
+                <div class="photo-item" onclick="openLightbox(46)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>RNLI Grace Darling Museum</h4>
+                        <p>Story of the famous Victorian lighthouse heroine</p>
+                    </div>
+                </div>
+                
+                <!-- Photo 6.8 -->
+                <div class="photo-item" onclick="openLightbox(47)">
+                    <div class="photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span>Photo placeholder</span>
+                    </div>
+                    <div class="photo-caption">
+                        <h4>Howick Hall Gardens</h4>
+                        <p>Home of Earl Grey tea, stunning coastal gardens</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- ============================================
+         LIGHTBOX MODAL
+         ============================================ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevImage()">&#10094;</button>
         <div class="lightbox-content">
-            <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-            <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
-            <img src="" alt="" class="lightbox-image">
-            <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
-            <p class="lightbox-caption"></p>
+            <img src="" alt="" id="lightbox-img">
+            <div class="lightbox-caption">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-desc"></p>
+            </div>
         </div>
+        <button class="lightbox-nav lightbox-next" onclick="nextImage()">&#10095;</button>
     </div>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="Back to top">↑</button>
-
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
+    
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <p>&copy; 2025 Puffling Cottage, operated by <a href="#">Rumah Homes Ltd</a>. All rights reserved.</p>
+    </footer>
+    
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // ============================================
+        // MOBILE MENU TOGGLE
+        // ============================================
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.nav-menu');
+            menu.classList.toggle('active');
+        }
+        
+        // ============================================
+        // PHOTO DATA ARRAY
+        // Stores all photo information for lightbox
+        // ============================================
+        const photos = [
+            // Section 1: The Cottage (indices 0-7)
+            { title: 'Cottage Exterior', desc: 'The welcoming front entrance of Puffling Cottage', src: '' },
+            { title: 'Living Room', desc: 'Spacious lounge with comfortable seating and sea views', src: '' },
+            { title: 'Kitchen', desc: 'Fully equipped modern kitchen with all amenities', src: '' },
+            { title: 'Master Bedroom', desc: 'King-size bed with quality linens and storage', src: '' },
+            { title: 'Second Bedroom', desc: 'Twin room perfect for children or additional guests', src: '' },
+            { title: 'Bathroom', desc: 'Modern bathroom with shower and coastal touches', src: '' },
+            { title: 'Garden Area', desc: 'Private outdoor space with seating and BBQ', src: '' },
+            { title: 'Dining Area', desc: 'Cosy dining space for family meals together', src: '' },
+            
+            // Section 2: Amble & Vicinity (indices 8-15)
+            { title: 'Amble Harbour', desc: 'Working fishing harbour with fresh seafood available', src: '' },
+            { title: 'Coquet Island View', desc: 'Home to thousands of puffins during breeding season', src: '' },
+            { title: 'Warkworth Beach', desc: 'Miles of pristine golden sand just minutes away', src: '' },
+            { title: 'Harbour Village', desc: 'Award-winning shops and restaurants at the waterfront', src: '' },
+            { title: 'Puffin Cruises', desc: 'Boat trips to see puffins up close (April-July)', src: '' },
+            { title: 'Little Shore', desc: 'Sheltered cove perfect for paddling and rock pools', src: '' },
+            { title: 'Dog-Friendly Beach', desc: 'Wide open spaces for four-legged friends to explore', src: '' },
+            { title: 'Sunrise at Amble', desc: 'Spectacular dawn views over the North Sea', src: '' },
+            
+            // Section 3: Coastline & Castles (indices 16-23)
+            { title: 'Warkworth Castle', desc: 'Magnificent medieval fortress overlooking the Coquet', src: '' },
+            { title: 'Bamburgh Castle', desc: 'Iconic fortress rising above golden sands', src: '' },
+            { title: 'Dunstanburgh Castle', desc: 'Dramatic ruins reached only on foot across clifftops', src: '' },
+            { title: 'Alnwick Castle', desc: 'The real Hogwarts - Harry Potter filming location', src: '' },
+            { title: 'Holy Island', desc: 'Lindisfarne - tidal island with ancient priory', src: '' },
+            { title: 'Seahouses', desc: 'Gateway to the Farne Islands and seal watching', src: '' },
+            { title: 'Craster', desc: 'Famous for kippers and stunning coastal walks', src: '' },
+            { title: 'Low Newton Beach', desc: 'Secluded bay with The Ship Inn nearby', src: '' },
+            
+            // Section 4: Cheviots & Interior (indices 24-31)
+            { title: 'The Cheviot', desc: 'Highest peak in Northumberland at 815 metres', src: '' },
+            { title: "Hadrian's Wall", desc: 'UNESCO World Heritage Roman frontier', src: '' },
+            { title: 'Dark Sky Park', desc: "Europe's largest Dark Sky Reserve for stargazing", src: '' },
+            { title: 'Coquetdale Valley', desc: 'Tranquil river valley with beautiful walking routes', src: '' },
+            { title: 'Kielder Forest', desc: "England's largest forest - 250 square miles of wilderness", src: '' },
+            { title: 'Kielder Water', desc: "Northern Europe's largest man-made lake", src: '' },
+            { title: 'Sycamore Gap', desc: "The famous Robin Hood tree at Hadrian's Wall", src: '' },
+            { title: 'College Valley', desc: 'Remote and unspoilt walking in the Cheviots', src: '' },
+            
+            // Section 5: Market Towns (indices 32-39)
+            { title: 'Alnwick', desc: 'Market town with castle, gardens and Barter Books', src: '' },
+            { title: 'Warkworth Village', desc: 'Picturesque village with castle views and riverside walks', src: '' },
+            { title: 'Morpeth', desc: 'County town with weekly market and riverside setting', src: '' },
+            { title: 'Rothbury', desc: 'Gateway to the Cheviots with Cragside nearby', src: '' },
+            { title: 'Hexham', desc: 'Historic abbey town with excellent cafés and shops', src: '' },
+            { title: 'Corbridge', desc: 'Roman heritage and a thriving high street', src: '' },
+            { title: 'Wooler', desc: 'Quiet market town at the foot of the Cheviots', src: '' },
+            { title: 'Berwick-upon-Tweed', desc: 'Border town with Elizabethan walls and bridges', src: '' },
+            
+            // Section 6: Additional Places of Interest (indices 40-47)
+            { title: 'Alnwick Garden', desc: "One of the world's most extraordinary gardens", src: '' },
+            { title: 'Cragside', desc: 'First house in the world lit by hydroelectricity', src: '' },
+            { title: 'Barter Books', desc: "One of Britain's largest second-hand bookshops", src: '' },
+            { title: 'Vindolanda', desc: 'Roman fort with ongoing archaeological discoveries', src: '' },
+            { title: 'Farne Islands', desc: "Seabird sanctuary with seals and St Cuthbert's chapel", src: '' },
+            { title: 'Chillingham Castle', desc: "Britain's most haunted castle and wild cattle", src: '' },
+            { title: 'RNLI Grace Darling Museum', desc: 'Story of the famous Victorian lighthouse heroine', src: '' },
+            { title: 'Howick Hall Gardens', desc: 'Home of Earl Grey tea, stunning coastal gardens', src: '' }
+        ];
+        
+        let currentIndex = 0;
+        
+        // ============================================
+        // LIGHTBOX FUNCTIONS
+        // ============================================
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const title = document.getElementById('lightbox-title');
+            const desc = document.getElementById('lightbox-desc');
+            
+            // Set content (placeholder message if no image)
+            if (photos[index].src) {
+                img.src = photos[index].src;
+                img.style.display = 'block';
+            } else {
+                img.style.display = 'none';
+            }
+            
+            title.textContent = photos[index].title;
+            desc.textContent = photos[index].desc;
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+        
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % photos.length;
+            openLightbox(currentIndex);
+        }
+        
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+            openLightbox(currentIndex);
+        }
+        
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        });
+        
+        // Close lightbox when clicking outside image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+        
+        // ============================================
+        // SMOOTH SCROLL FOR SECTION NAVIGATION
+        // ============================================
+        document.querySelectorAll('.section-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
