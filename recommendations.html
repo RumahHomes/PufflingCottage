@@ -12,6 +12,200 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Photo Gallery Styles (for gallery sections) -->
+    <style>
+        /* Section Navigation (Jump Links) */
+        .section-nav {
+            background: var(--color-white, #ffffff);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--color-grey-light, #e9ecef);
+            position: sticky;
+            top: 70px;
+            z-index: 99;
+        }
+        
+        .section-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .section-nav a {
+            font-family: var(--font-body, 'Nunito Sans', sans-serif);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-navy, #1a2634);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            background: var(--color-grey-light, #e9ecef);
+            transition: all 0.3s ease;
+        }
+        
+        .section-nav a:hover {
+            background: var(--color-orange, #e67e22);
+            color: var(--color-white, #ffffff);
+        }
+        
+        /* Gallery Sections */
+        .gallery-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 160px;
+        }
+        
+        .gallery-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-title-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--color-orange, #e67e22);
+        }
+        
+        .section-number {
+            background: var(--color-navy, #1a2634);
+            color: var(--color-yellow, #f1c40f);
+            font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+            font-size: 18px;
+            font-weight: 700;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .section-title-bar h2 {
+            font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-navy, #1a2634);
+            letter-spacing: -0.3px;
+            margin: 0;
+        }
+        
+        .section-intro {
+            font-family: var(--font-body, 'Nunito Sans', sans-serif);
+            font-size: 16px;
+            color: var(--color-grey, #555555);
+            margin-bottom: 24px;
+            max-width: 800px;
+        }
+        
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        
+        /* Photo Item with Hover Caption */
+        .photo-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Photo Caption Overlay */
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(26,38,52,0.95) 0%, rgba(26,38,52,0.7) 60%, transparent 100%);
+            padding: 40px 16px 16px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        .photo-caption h4 {
+            font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0 0 4px 0;
+        }
+        
+        .photo-caption p {
+            font-family: var(--font-body, 'Nunito Sans', sans-serif);
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+            margin: 0;
+        }
+        
+        /* Responsive for photo grid */
+        @media (max-width: 1200px) {
+            .photo-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        @media (max-width: 900px) {
+            .photo-grid { grid-template-columns: repeat(2, 1fr); }
+            .section-title-bar h2 { font-size: 24px; }
+        }
+        
+        @media (max-width: 768px) {
+            .section-nav { top: 60px; }
+            .section-nav-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 8px;
+            }
+            .section-nav a { white-space: nowrap; }
+            .photo-caption {
+                transform: translateY(0);
+                padding: 30px 12px 12px;
+            }
+            .photo-caption h4 { font-size: 13px; }
+            .photo-caption p { font-size: 11px; }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-grid { grid-template-columns: 1fr; }
+            .section-title-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -31,10 +225,10 @@
                 
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="about.html" class="nav-link">Our Cottage</a></li>
                     <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
                     <li><a href="recommendations.html" class="nav-link active">Things to Do</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
                     <li><a href="index.html#enquiry" class="nav-link">Enquire</a></li>
                 </ul>
             </nav>
@@ -56,8 +250,18 @@
         </div>
     </section>
 
+    <!-- Section Navigation -->
+    <nav class="section-nav">
+        <div class="section-nav-container">
+            <a href="#recommendations">Recommendations</a>
+            <a href="#coastline">Coastline & Castles</a>
+            <a href="#cheviots">Cheviots & Interior</a>
+            <a href="#additional">Places of Interest</a>
+        </div>
+    </nav>
+
     <!-- Intro -->
-    <section class="section">
+    <section class="section" id="recommendations">
         <div class="container">
             <div class="section-header reveal">
                 <span class="overline">Our Recommendations</span>
@@ -167,10 +371,10 @@
                         </div>
                         <div class="recommendation-content">
                             <h4>Holy Island (Lindisfarne)</h4>
-                            <p>A tidal island with a rich religious history, ancient priory ruins, and Lindisfarne Castle. Check tide times – you can only access by causeway at low tide!</p>
+                            <p>A magical tidal island with an ancient priory and castle. Check tide times before visiting – you can only cross the causeway at low tide!</p>
                             <div class="recommendation-meta">
-                                <span>📍 30 min drive</span>
-                                <span>⏱️ Half day</span>
+                                <span>📍 40 min drive</span>
+                                <span>⏱️ Full day</span>
                             </div>
                         </div>
                     </div>
@@ -191,11 +395,11 @@
                 <div class="recommendations-grid">
                     <div class="recommendation-card">
                         <div class="recommendation-content">
-                            <h4>The Old Boathouse</h4>
-                            <p>Fresh seafood with harbour views in Amble. Try their famous fish and chips or the daily catch. A local favourite with a relaxed atmosphere.</p>
+                            <h4>The Old Boat House</h4>
+                            <p>Award-winning seafood restaurant right on Amble harbour. Fresh lobster, crab, and fish dishes with stunning views. Booking essential!</p>
                             <div class="recommendation-meta">
                                 <span>📍 5 min walk</span>
-                                <span>🌟 Highly recommended</span>
+                                <span>🌟 Local favourite</span>
                             </div>
                         </div>
                     </div>
@@ -317,6 +521,171 @@
         </div>
     </section>
 
+    <!-- PHOTO GALLERY SECTION: COASTLINE & CASTLES -->
+    <section class="section" id="coastline">
+        <div class="container">
+            <section class="gallery-section">
+                <div class="section-title-bar">
+                    <span class="section-number">1</span>
+                    <h2>Coastline & Castles</h2>
+                </div>
+                <p class="section-intro">Northumberland boasts more castles than any other English county, set against a dramatic coastline designated an Area of Outstanding Natural Beauty.</p>
+                
+                <div class="photo-grid">
+                    <div class="photo-item" data-lightbox="images/Warkworth_Castle_1.jpeg" data-caption="Magnificent medieval fortress overlooking the Coquet">
+                        <img src="images/Warkworth_Castle_1.jpeg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Warkworth Castle</h4><p>Magnificent medieval fortress overlooking the Coquet</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Bamburgh_Castle_2.JPG" data-caption="Iconic fortress rising above golden sands">
+                        <img src="images/Bamburgh_Castle_2.JPG" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Bamburgh Castle</h4><p>Iconic fortress rising above golden sands</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Dunstanburgh_Castle_3.JPG" data-caption="Dramatic ruins reached only on foot across clifftops">
+                        <img src="images/Dunstanburgh_Castle_3.JPG" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Dunstanburgh Castle</h4><p>Dramatic ruins reached only on foot across clifftops</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/alnwick-castle.jpg" data-caption="The real Hogwarts - Harry Potter filming location">
+                        <img src="images/alnwick-castle.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Alnwick Castle</h4><p>The real Hogwarts - Harry Potter filming location</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/holy-island.jpg" data-caption="Lindisfarne - tidal island with ancient priory">
+                        <img src="images/holy-island.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Holy Island</h4><p>Lindisfarne - tidal island with ancient priory</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/seahouses.jpg" data-caption="Gateway to the Farne Islands and seal watching">
+                        <img src="images/seahouses.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Seahouses</h4><p>Gateway to the Farne Islands and seal watching</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Food_Heaven_Image_1.JPG" data-caption="Famous for kippers and stunning coastal walks">
+                        <img src="images/Food_Heaven_Image_1.JPG" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Craster</h4><p>Famous for kippers and stunning coastal walks</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Pristine_Beaches_Image_1.JPG" data-caption="Secluded bay with The Ship Inn nearby">
+                        <img src="images/Pristine_Beaches_Image_1.JPG" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Low Newton Beach</h4><p>Secluded bay with The Ship Inn nearby</p></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    
+    <!-- PHOTO GALLERY SECTION: CHEVIOTS & THE INTERIOR -->
+    <section class="section bg-white" id="cheviots">
+        <div class="container">
+            <section class="gallery-section">
+                <div class="section-title-bar">
+                    <span class="section-number">2</span>
+                    <h2>Cheviots & The Interior</h2>
+                </div>
+                <p class="section-intro">Venture inland to discover rolling hills, ancient forests, and the wild beauty of Northumberland National Park and the Dark Sky Reserve.</p>
+                
+                <div class="photo-grid">
+                    <div class="photo-item" data-lightbox="images/cheviot.jpg" data-caption="Highest peak in Northumberland at 815 metres">
+                        <img src="images/cheviot.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>The Cheviot</h4><p>Highest peak in Northumberland at 815 metres</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/hadrians-wall.jpg" data-caption="UNESCO World Heritage Roman frontier">
+                        <img src="images/hadrians-wall.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Hadrian's Wall</h4><p>UNESCO World Heritage Roman frontier</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Kielder_Observatory.png" data-caption="Europe's largest Dark Sky Reserve for stargazing">
+                        <img src="images/Kielder_Observatory.png" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Dark Sky Park</h4><p>Europe's largest Dark Sky Reserve for stargazing</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/coquetdale.jpg" data-caption="Tranquil river valley with beautiful walking routes">
+                        <img src="images/coquetdale.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Coquetdale Valley</h4><p>Tranquil river valley with beautiful walking routes</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/kielder-forest.jpg" data-caption="England's largest forest - 250 square miles of wilderness">
+                        <img src="images/kielder-forest.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Kielder Forest</h4><p>England's largest forest - 250 square miles of wilderness</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/kielder-water.jpg" data-caption="Northern Europe's largest man-made lake">
+                        <img src="images/kielder-water.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Kielder Water</h4><p>Northern Europe's largest man-made lake</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/sycamore-gap.jpg" data-caption="The famous Robin Hood tree at Hadrian's Wall">
+                        <img src="images/sycamore-gap.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Sycamore Gap</h4><p>The famous Robin Hood tree at Hadrian's Wall</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Activity_Variety_Image_1.JPG" data-caption="Remote and unspoilt walking in the Cheviots">
+                        <img src="images/Activity_Variety_Image_1.JPG" alt="Gallery Image">
+                        <div class="photo-caption"><h4>College Valley</h4><p>Remote and unspoilt walking in the Cheviots</p></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    
+    <!-- PHOTO GALLERY SECTION: ADDITIONAL PLACES OF INTEREST -->
+    <section class="section" id="additional">
+        <div class="container">
+            <section class="gallery-section">
+                <div class="section-title-bar">
+                    <span class="section-number">3</span>
+                    <h2>Additional Places of Interest</h2>
+                </div>
+                <p class="section-intro">Beyond the classics, Northumberland has countless hidden gems, gardens, historic houses and experiences waiting to be discovered.</p>
+                
+                <div class="photo-grid">
+                    <div class="photo-item" data-lightbox="images/Cherry_Blossom_1.jpeg" data-caption="One of the world's most extraordinary gardens & the largest Taihaku cherry blossom orchard in the world!">
+                        <img src="images/Cherry_Blossom_1.jpeg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Alnwick Garden</h4><p>One of the world's most extraordinary gardens & the largest Taihaku cherry blossom orchard in the world!</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Cragside_1.jpeg" data-caption="First smart house in the world lit by hydroelectricity">
+                        <img src="images/Cragside_1.jpeg" alt="Cragside">
+                        <div class="photo-caption"><h4>Cragside</h4><p>First smart house in the world lit by hydroelectricity</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Barter_Books_1.jpeg" data-caption="One of Britain's largest second-hand bookshops">
+                        <img src="images/Barter_Books_1.jpeg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Barter Books</h4><p>One of Britain's largest second-hand bookshops</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Vindolanda.png" data-caption="Roman fort with ongoing archaeological discoveries">
+                        <img src="images/Vindolanda.png" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Vindolanda</h4><p>Roman fort with ongoing archaeological discoveries</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Farne_Islands_1.jpeg" data-caption="Seabird sanctuary with seals and St Cuthbert's chapel">
+                        <img src="images/Farne_Islands_1.jpeg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Farne Islands</h4><p>Seabird sanctuary with seals and St Cuthbert's chapel</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/chillingham-castle.jpg" data-caption="Britain's most haunted castle and wild cattle">
+                        <img src="images/chillingham-castle.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Chillingham Castle</h4><p>Britain's most haunted castle and wild cattle</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/grace-darling.jpg" data-caption="Story of the famous Victorian lighthouse heroine">
+                        <img src="images/grace-darling.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>RNLI Grace Darling Museum</h4><p>Story of the famous Victorian lighthouse heroine</p></div>
+                    </div>
+                    
+                    <div class="photo-item" data-lightbox="images/Howick_1.jpeg" data-caption="Home of Earl Grey tea, stunning coastal gardens & walks">
+                        <img src="images/Howick_1.jpeg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Howick Hall Gardens</h4><p>Home of Earl Grey tea, stunning coastal gardens & walks</p></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
     <!-- Call to Action -->
     <section class="section enquiry-section">
         <div class="container text-center">
@@ -341,10 +710,10 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="about.html">Our Cottage</a></li>
                         <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="recommendations.html">Things to Do</a></li>
-                        <li><a href="about.html">About Us</a></li>
                     </ul>
                 </div>
                 
@@ -361,6 +730,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+            <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
+            <img src="" alt="" class="lightbox-image">
+            <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
+            <p class="lightbox-caption"></p>
+        </div>
+    </div>
 
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top">↑</button>
