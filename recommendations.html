@@ -13,7 +13,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/styles.css">
     
-    <!-- Photo Gallery Styles (for gallery sections) -->
+    <!-- Page Specific Styles -->
     <style>
         /* Section Navigation (Jump Links) */
         .section-nav {
@@ -110,6 +110,13 @@
             gap: 16px;
         }
         
+        /* Three column grid for Cheviots section */
+        .photo-grid-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        
         /* Photo Item with Hover Caption */
         .photo-item {
             position: relative;
@@ -169,13 +176,32 @@
             margin: 0;
         }
         
+        /* Local To Amble Section Styling */
+        .local-section {
+            scroll-margin-top: 160px;
+        }
+        
+        .local-section .section-title-bar {
+            margin-bottom: 32px;
+        }
+        
+        .local-subsection {
+            margin-bottom: 48px;
+        }
+        
+        .local-subsection:last-child {
+            margin-bottom: 0;
+        }
+        
         /* Responsive for photo grid */
         @media (max-width: 1200px) {
             .photo-grid { grid-template-columns: repeat(3, 1fr); }
+            .photo-grid-three { grid-template-columns: repeat(3, 1fr); }
         }
         
         @media (max-width: 900px) {
             .photo-grid { grid-template-columns: repeat(2, 1fr); }
+            .photo-grid-three { grid-template-columns: repeat(2, 1fr); }
             .section-title-bar h2 { font-size: 24px; }
         }
         
@@ -199,6 +225,7 @@
         
         @media (max-width: 480px) {
             .photo-grid { grid-template-columns: 1fr; }
+            .photo-grid-three { grid-template-columns: 1fr; }
             .section-title-bar {
                 flex-direction: column;
                 align-items: flex-start;
@@ -253,280 +280,232 @@
     <!-- Section Navigation -->
     <nav class="section-nav">
         <div class="section-nav-container">
-            <a href="#recommendations">Recommendations</a>
+            <a href="#local">Local To Amble</a>
             <a href="#coastline">Coastline & Castles</a>
             <a href="#cheviots">Cheviots & Interior</a>
-            <a href="#additional">Places of Interest</a>
+            <a href="#additional">Additional Great Ideas</a>
         </div>
     </nav>
 
-    <!-- Intro -->
-    <section class="section" id="recommendations">
+    <!-- ============================================
+         SECTION 1: LOCAL TO AMBLE
+         ============================================ -->
+    <section class="section local-section" id="local">
         <div class="container">
-            <div class="section-header reveal">
-                <span class="overline">Our Recommendations</span>
-                <h2>Explore Northumberland</h2>
-                <p class="subtitle">As locals, we've compiled our favourite places to visit, eat, and explore. Here are our top recommendations to make the most of your stay.</p>
+            
+            <!-- Section Header -->
+            <div class="section-title-bar">
+                <span class="section-number">1</span>
+                <h2>Local To Amble</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- Castles & Heritage -->
-    <section class="section bg-white">
-        <div class="container">
-            <div class="recommendation-section reveal">
-                <div class="category-header">
-                    <span class="category-icon">🏰</span>
-                    <h3>Castles & Heritage</h3>
-                </div>
-                
-                <div class="recommendations-grid">
-                    <div class="recommendation-card">
-                        <div class="recommendation-image">
-                            <img src="images/IMG_1906.JPG" alt="Bamburgh Castle">
-                        </div>
-                        <div class="recommendation-content">
-                            <h4>Bamburgh Castle</h4>
-                            <p>One of England's most iconic fortresses, dramatically perched on a volcanic outcrop overlooking the sea. Explore the stunning state rooms and learn about over 1,400 years of history.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 5 min drive</span>
-                                <span>⏱️ Half day</span>
-                            </div>
-                        </div>
+            <p class="section-intro">As locals, we've compiled our favourite places to visit, eat, and explore. Here are our top recommendations to make the most of your stay in and around Amble-By-The-Sea.</p>
+            
+            <!-- Castles & Heritage -->
+            <div class="local-subsection">
+                <div class="recommendation-section reveal">
+                    <div class="category-header">
+                        <span class="category-icon">🏰</span>
+                        <h3>Castles & Heritage</h3>
                     </div>
                     
-                    <div class="recommendation-card">
-                        <div class="recommendation-image">
-                            <img src="images/IMG_1920.JPG" alt="Dunstanburgh Castle">
-                        </div>
-                        <div class="recommendation-content">
-                            <h4>Dunstanburgh Castle</h4>
-                            <p>A dramatic 14th-century castle ruin accessible only by foot. The scenic coastal walk from Craster is one of Northumberland's finest, with stunning views throughout.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 15 min drive + walk</span>
-                                <span>⏱️ Half day</span>
+                    <div class="recommendations-grid">
+                        <div class="recommendation-card">
+                            <div class="recommendation-image">
+                                <img src="images/IMG_1906.JPG" alt="Bamburgh Castle">
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Bamburgh Castle</h4>
+                                <p>One of England's most iconic fortresses, dramatically perched on a volcanic outcrop overlooking the sea. Explore the stunning state rooms and learn about over 1,400 years of history.</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 5 min drive</span>
+                                    <span>⏱️ Half day</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="recommendation-card">
-                        <div class="recommendation-image">
-                            <img src="images/IMG_1941.JPG" alt="Alnwick Castle">
-                        </div>
-                        <div class="recommendation-content">
-                            <h4>Alnwick Castle & Gardens</h4>
-                            <p>Known as the 'Windsor of the North' and famous as a Harry Potter filming location. Don't miss the spectacular Alnwick Garden with its unique water features.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 20 min drive</span>
-                                <span>⏱️ Full day</span>
+                        
+                        <div class="recommendation-card">
+                            <div class="recommendation-image">
+                                <img src="images/IMG_1920.JPG" alt="Dunstanburgh Castle">
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Dunstanburgh Castle</h4>
+                                <p>A dramatic 14th-century castle ruin accessible only by foot. The scenic coastal walk from Craster is one of Northumberland's finest, with stunning views throughout.</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 15 min drive + walk</span>
+                                    <span>⏱️ Half day</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Nature & Wildlife -->
-    <section class="section">
-        <div class="container">
-            <div class="recommendation-section reveal">
-                <div class="category-header">
-                    <span class="category-icon">🐦</span>
-                    <h3>Nature & Wildlife</h3>
-                </div>
-                
-                <div class="recommendations-grid">
-                    <div class="recommendation-card">
-                        <div class="recommendation-image">
-                            <img src="images/IMG_1848.JPG" alt="Farne Islands">
-                        </div>
-                        <div class="recommendation-content">
-                            <h4>Farne Islands</h4>
-                            <p>Home to thousands of puffins, grey seals, and seabirds. Boat trips depart from Seahouses harbour – an absolute must-do! Best visited April-July for puffin season.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 Seahouses harbour</span>
-                                <span>⏱️ 2-4 hours</span>
+                        
+                        <div class="recommendation-card">
+                            <div class="recommendation-image">
+                                <img src="images/IMG_1941.JPG" alt="Alnwick Castle">
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="recommendation-card">
-                        <div class="recommendation-image">
-                            <img src="images/IMG_1849.JPG" alt="Seahouses Beach">
-                        </div>
-                        <div class="recommendation-content">
-                            <h4>Seahouses Beach</h4>
-                            <p>Just a 5-minute walk from the cottage! Beautiful sandy beach with rock pools to explore at low tide. Perfect for dogs, families, and coastal walks.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 5 min walk</span>
-                                <span>⏱️ Flexible</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="recommendation-card">
-                        <div class="recommendation-image">
-                            <img src="images/IMG_1944.JPG" alt="Holy Island">
-                        </div>
-                        <div class="recommendation-content">
-                            <h4>Holy Island (Lindisfarne)</h4>
-                            <p>A magical tidal island with an ancient priory and castle. Check tide times before visiting – you can only cross the causeway at low tide!</p>
-                            <div class="recommendation-meta">
-                                <span>📍 40 min drive</span>
-                                <span>⏱️ Full day</span>
+                            <div class="recommendation-content">
+                                <h4>Alnwick Castle & Gardens</h4>
+                                <p>Known as the 'Windsor of the North' and famous as a Harry Potter filming location. Don't miss the spectacular Alnwick Garden with its unique water features.</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 20 min drive</span>
+                                    <span>⏱️ Full day</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Food & Drink -->
-    <section class="section bg-white">
-        <div class="container">
-            <div class="recommendation-section reveal">
-                <div class="category-header">
-                    <span class="category-icon">🍽️</span>
-                    <h3>Food & Drink</h3>
-                </div>
-                
-                <div class="recommendations-grid">
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>The Old Boat House</h4>
-                            <p>Award-winning seafood restaurant right on Amble harbour. Fresh lobster, crab, and fish dishes with stunning views. Booking essential!</p>
-                            <div class="recommendation-meta">
-                                <span>📍 5 min walk</span>
-                                <span>🌟 Local favourite</span>
-                            </div>
-                        </div>
+            <!-- Nature & Wildlife -->
+            <div class="local-subsection">
+                <div class="recommendation-section reveal">
+                    <div class="category-header">
+                        <span class="category-icon">🐦</span>
+                        <h3>Nature & Wildlife</h3>
                     </div>
                     
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>Seahouses Fish & Chips</h4>
-                            <p>You can't visit the coast without proper fish and chips! Several excellent chippies in Seahouses – nothing beats eating them overlooking the harbour.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 10 min walk</span>
-                                <span>🌟 Traditional favourite</span>
+                    <div class="recommendations-grid">
+                        <div class="recommendation-card">
+                            <div class="recommendation-image">
+                                <img src="images/IMG_1848.JPG" alt="Farne Islands">
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Farne Islands</h4>
+                                <p>Home to thousands of puffins, grey seals, and seabirds. Boat trips depart from Seahouses harbour – an absolute must-do! Best visited April-July for puffin season.</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 Seahouses harbour</span>
+                                    <span>⏱️ 2-4 hours</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>Craster Kippers</h4>
-                            <p>Visit the famous L. Robson & Sons smokehouse in Craster to see traditional kipper smoking and pick up some of the finest smoked fish in Britain.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 15 min drive</span>
-                                <span>🌟 Must-try</span>
+                        
+                        <div class="recommendation-card">
+                            <div class="recommendation-image">
+                                <img src="images/IMG_1849.JPG" alt="Seahouses Beach">
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Seahouses Beach</h4>
+                                <p>Just a 5-minute walk from the cottage! Beautiful sandy beach with rock pools to explore at low tide. Perfect for dogs, families, and coastal walks.</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 5 min walk</span>
+                                    <span>⏱️ Flexible</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-card">
+                            <div class="recommendation-image">
+                                <img src="images/IMG_1944.JPG" alt="Holy Island">
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Holy Island (Lindisfarne)</h4>
+                                <p>A magical tidal island with an ancient priory and castle. Check tide times before visiting – you can only cross the causeway at low tide!</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 40 min drive</span>
+                                    <span>⏱️ Full day</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Activities -->
-    <section class="section">
-        <div class="container">
-            <div class="recommendation-section reveal">
-                <div class="category-header">
-                    <span class="category-icon">🚶</span>
-                    <h3>Activities</h3>
-                </div>
-                
-                <div class="recommendations-grid">
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>Coastal Walking</h4>
-                            <p>Miles of stunning coastal paths right on your doorstep. Walk from Seahouses to Bamburgh along the beach for spectacular castle views, or try the Dunstanburgh route.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 From cottage</span>
-                                <span>🐾 Dog friendly</span>
-                            </div>
-                        </div>
+            <!-- Food & Drink -->
+            <div class="local-subsection">
+                <div class="recommendation-section reveal">
+                    <div class="category-header">
+                        <span class="category-icon">🍽️</span>
+                        <h3>Food & Drink</h3>
                     </div>
                     
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>Cycling</h4>
-                            <p>Quiet country lanes and dedicated cycle routes make this area perfect for exploring on two wheels. Bike hire available locally.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 Various routes</span>
-                                <span>⏱️ Flexible</span>
+                    <div class="recommendations-grid">
+                        <div class="recommendation-card">
+                            <div class="recommendation-content">
+                                <h4>The Old Boat House</h4>
+                                <p>Award-winning seafood restaurant right on Amble harbour. Fresh lobster, crab, and fish dishes with stunning views. Booking essential!</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 5 min walk</span>
+                                    <span>🌟 Local favourite</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>Water Sports</h4>
-                            <p>Kayaking, paddleboarding, and surfing are all popular along this stretch of coast. Several local providers offer lessons and equipment hire.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 Local beaches</span>
-                                <span>⏱️ Half day</span>
+                        
+                        <div class="recommendation-card">
+                            <div class="recommendation-content">
+                                <h4>Seahouses Fish & Chips</h4>
+                                <p>You can't visit the coast without proper fish and chips! Several excellent chippies in Seahouses – nothing beats eating them overlooking the harbour.</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 10 min walk</span>
+                                    <span>🌟 Traditional favourite</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-card">
+                            <div class="recommendation-content">
+                                <h4>Craster Kippers</h4>
+                                <p>Visit the famous L. Robson & Sons smokehouse in Craster to see traditional kipper smoking and pick up some of the finest smoked fish in Britain.</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 15 min drive</span>
+                                    <span>🌟 Must-try</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Practical Info -->
-    <section class="section bg-white">
-        <div class="container">
-            <div class="recommendation-section reveal">
-                <div class="category-header">
-                    <span class="category-icon">ℹ️</span>
-                    <h3>Practical Information</h3>
-                </div>
-                
-                <div class="recommendations-grid">
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>Nearest Supermarkets</h4>
-                            <p>Amble has a Tesco for essentials & very close to the cottage a larger Morrisons supermarket. For more options, Alnwick (20 min) has Turnbulls and Aldi, or Morpeth (30 min) has a wider selection.</p>
-                            <div class="recommendation-meta">
-                                <span>📍 Various</span>
-                            </div>
-                        </div>
+            <!-- Practical Information -->
+            <div class="local-subsection">
+                <div class="recommendation-section reveal">
+                    <div class="category-header">
+                        <span class="category-icon">ℹ️</span>
+                        <h3>Practical Information</h3>
                     </div>
                     
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>Vets</h4>
-                            <p>The nearest vet is a few minutes walk or drive from the cottage. We can provide contact details and directions on request – just ask when you book!</p>
-                            <div class="recommendation-meta">
-                                <span>📍 Amble-By-The-Sea</span>
+                    <div class="recommendations-grid">
+                        <div class="recommendation-card">
+                            <div class="recommendation-content">
+                                <h4>Nearest Supermarkets</h4>
+                                <p>Amble has a Tesco for essentials & very close to the cottage a larger Morrisons supermarket. For more options, Alnwick (20 min) has Turnbulls and Aldi, or Morpeth (30 min) has a wider selection.</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 Various</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="recommendation-card">
-                        <div class="recommendation-content">
-                            <h4>Beach Safety</h4>
-                            <p>Most beaches are dog-friendly year-round. Check tide times before heading to Holy Island. Lifeguards patrol some beaches in summer months.</p>
-                            <div class="recommendation-meta">
-                                <span>🐾 Dog friendly</span>
+                        
+                        <div class="recommendation-card">
+                            <div class="recommendation-content">
+                                <h4>Vets</h4>
+                                <p>The nearest vet is a few minutes walk or drive from the cottage. We can provide contact details and directions on request – just ask when you book!</p>
+                                <div class="recommendation-meta">
+                                    <span>📍 Amble-By-The-Sea</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-card">
+                            <div class="recommendation-content">
+                                <h4>Beach Safety</h4>
+                                <p>Most beaches are dog-friendly year-round. Check tide times before heading to Holy Island. Lifeguards patrol some beaches in summer months.</p>
+                                <div class="recommendation-meta">
+                                    <span>🐾 Dog friendly</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </section>
 
-    <!-- PHOTO GALLERY SECTION: COASTLINE & CASTLES -->
-    <section class="section" id="coastline">
+    <!-- ============================================
+         SECTION 2: COASTLINE & CASTLES
+         ============================================ -->
+    <section class="section bg-white" id="coastline">
         <div class="container">
             <section class="gallery-section">
                 <div class="section-title-bar">
-                    <span class="section-number">1</span>
+                    <span class="section-number">2</span>
                     <h2>Coastline & Castles</h2>
                 </div>
                 <p class="section-intro">Northumberland boasts more castles than any other English county, set against a dramatic coastline designated an Area of Outstanding Natural Beauty.</p>
@@ -567,77 +546,57 @@
                         <div class="photo-caption"><h4>Craster</h4><p>Famous for kippers and stunning coastal walks</p></div>
                     </div>
                     
-                    <div class="photo-item" data-lightbox="images/Pristine_Beaches_Image_1.JPG" data-caption="Secluded bay with The Ship Inn nearby">
-                        <img src="images/Pristine_Beaches_Image_1.JPG" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Low Newton Beach</h4><p>Secluded bay with The Ship Inn nearby</p></div>
+                    <!-- Farne Islands moved here from Additional Places of Interest -->
+                    <div class="photo-item" data-lightbox="images/Farne_Islands_1.jpeg" data-caption="Seabird sanctuary with seals and St Cuthbert's chapel">
+                        <img src="images/Farne_Islands_1.jpeg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Farne Islands</h4><p>Seabird sanctuary with seals and St Cuthbert's chapel</p></div>
                     </div>
                 </div>
             </section>
         </div>
     </section>
     
-    <!-- PHOTO GALLERY SECTION: CHEVIOTS & THE INTERIOR -->
-    <section class="section bg-white" id="cheviots">
+    <!-- ============================================
+         SECTION 3: CHEVIOTS & THE INTERIOR
+         ============================================ -->
+    <section class="section" id="cheviots">
         <div class="container">
             <section class="gallery-section">
                 <div class="section-title-bar">
-                    <span class="section-number">2</span>
+                    <span class="section-number">3</span>
                     <h2>Cheviots & The Interior</h2>
                 </div>
                 <p class="section-intro">Venture inland to discover rolling hills, ancient forests, and the wild beauty of Northumberland National Park and the Dark Sky Reserve.</p>
                 
-                <div class="photo-grid">
-                    <div class="photo-item" data-lightbox="images/cheviot.jpg" data-caption="Highest peak in Northumberland at 815 metres">
-                        <img src="images/cheviot.jpg" alt="Gallery Image">
-                        <div class="photo-caption"><h4>The Cheviot</h4><p>Highest peak in Northumberland at 815 metres</p></div>
-                    </div>
-                    
+                <div class="photo-grid-three">
                     <div class="photo-item" data-lightbox="images/hadrians-wall.jpg" data-caption="UNESCO World Heritage Roman frontier">
                         <img src="images/hadrians-wall.jpg" alt="Gallery Image">
                         <div class="photo-caption"><h4>Hadrian's Wall</h4><p>UNESCO World Heritage Roman frontier</p></div>
                     </div>
                     
+                    <div class="photo-item" data-lightbox="images/kielder-water.jpg" data-caption="Northern Europe's largest man-made lake surrounded by England's largest forest">
+                        <img src="images/kielder-water.jpg" alt="Gallery Image">
+                        <div class="photo-caption"><h4>Kielder Water & Forest</h4><p>Northern Europe's largest man-made lake surrounded by England's largest forest</p></div>
+                    </div>
+                    
                     <div class="photo-item" data-lightbox="images/Kielder_Observatory.png" data-caption="Europe's largest Dark Sky Reserve for stargazing">
                         <img src="images/Kielder_Observatory.png" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Dark Sky Park</h4><p>Europe's largest Dark Sky Reserve for stargazing</p></div>
-                    </div>
-                    
-                    <div class="photo-item" data-lightbox="images/coquetdale.jpg" data-caption="Tranquil river valley with beautiful walking routes">
-                        <img src="images/coquetdale.jpg" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Coquetdale Valley</h4><p>Tranquil river valley with beautiful walking routes</p></div>
-                    </div>
-                    
-                    <div class="photo-item" data-lightbox="images/kielder-forest.jpg" data-caption="England's largest forest - 250 square miles of wilderness">
-                        <img src="images/kielder-forest.jpg" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Kielder Forest</h4><p>England's largest forest - 250 square miles of wilderness</p></div>
-                    </div>
-                    
-                    <div class="photo-item" data-lightbox="images/kielder-water.jpg" data-caption="Northern Europe's largest man-made lake">
-                        <img src="images/kielder-water.jpg" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Kielder Water</h4><p>Northern Europe's largest man-made lake</p></div>
-                    </div>
-                    
-                    <div class="photo-item" data-lightbox="images/sycamore-gap.jpg" data-caption="The famous Robin Hood tree at Hadrian's Wall">
-                        <img src="images/sycamore-gap.jpg" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Sycamore Gap</h4><p>The famous Robin Hood tree at Hadrian's Wall</p></div>
-                    </div>
-                    
-                    <div class="photo-item" data-lightbox="images/Activity_Variety_Image_1.JPG" data-caption="Remote and unspoilt walking in the Cheviots">
-                        <img src="images/Activity_Variety_Image_1.JPG" alt="Gallery Image">
-                        <div class="photo-caption"><h4>College Valley</h4><p>Remote and unspoilt walking in the Cheviots</p></div>
+                        <div class="photo-caption"><h4>Dark Skies Park</h4><p>Europe's largest Dark Sky Reserve for stargazing</p></div>
                     </div>
                 </div>
             </section>
         </div>
     </section>
     
-    <!-- PHOTO GALLERY SECTION: ADDITIONAL PLACES OF INTEREST -->
-    <section class="section" id="additional">
+    <!-- ============================================
+         SECTION 4: ADDITIONAL GREAT IDEAS
+         ============================================ -->
+    <section class="section bg-white" id="additional">
         <div class="container">
             <section class="gallery-section">
                 <div class="section-title-bar">
-                    <span class="section-number">3</span>
-                    <h2>Additional Places of Interest</h2>
+                    <span class="section-number">4</span>
+                    <h2>Additional Great Ideas</h2>
                 </div>
                 <p class="section-intro">Beyond the classics, Northumberland has countless hidden gems, gardens, historic houses and experiences waiting to be discovered.</p>
                 
@@ -660,11 +619,6 @@
                     <div class="photo-item" data-lightbox="images/Vindolanda.png" data-caption="Roman fort with ongoing archaeological discoveries">
                         <img src="images/Vindolanda.png" alt="Gallery Image">
                         <div class="photo-caption"><h4>Vindolanda</h4><p>Roman fort with ongoing archaeological discoveries</p></div>
-                    </div>
-                    
-                    <div class="photo-item" data-lightbox="images/Farne_Islands_1.jpeg" data-caption="Seabird sanctuary with seals and St Cuthbert's chapel">
-                        <img src="images/Farne_Islands_1.jpeg" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Farne Islands</h4><p>Seabird sanctuary with seals and St Cuthbert's chapel</p></div>
                     </div>
                     
                     <div class="photo-item" data-lightbox="images/chillingham-castle.jpg" data-caption="Britain's most haunted castle and wild cattle">
