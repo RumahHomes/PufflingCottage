@@ -24,9 +24,9 @@
     <style>
         /* Section Navigation (Jump Links) */
         .section-nav {
-            background: var(--color-white, #ffffff);
+            background: var(--color-navy, #1a2634);
             padding: 20px 0;
-            border-bottom: 1px solid var(--color-grey-light, #e9ecef);
+            border-bottom: 3px solid var(--color-orange, #e67e22);
             position: sticky;
             top: 70px;
             z-index: 99;
@@ -46,16 +46,18 @@
             font-family: var(--font-body, 'Nunito Sans', sans-serif);
             font-size: 14px;
             font-weight: 600;
-            color: var(--color-navy, #1a2634);
+            color: var(--color-white, #ffffff);
             text-decoration: none;
             padding: 8px 16px;
             border-radius: 25px;
-            background: var(--color-grey-light, #e9ecef);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
         
         .section-nav a:hover {
             background: var(--color-orange, #e67e22);
+            border-color: var(--color-orange, #e67e22);
             color: var(--color-white, #ffffff);
         }
         
@@ -484,3 +486,4 @@
 
     <!-- Back to Top Button -->
         <button class="ba
+            
