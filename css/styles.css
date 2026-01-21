@@ -207,12 +207,11 @@ p {
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: transparent;
-    transition: background-color var(--transition-medium), box-shadow var(--transition-medium);
+    background-color: #1a2634 !important;
+    transition: box-shadow var(--transition-medium);
 }
 
 .header.scrolled {
-    background-color: var(--color-navy);
     box-shadow: var(--shadow-md);
 }
 
