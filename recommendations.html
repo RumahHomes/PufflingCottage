@@ -407,7 +407,7 @@
             
             <!-- Amble-by-the-Sea-->
             <div class="local-subsection">
-                <div class="recommendation-section reveal">
+                <div class="recommendation-section">
                     <div class="category-header">
                         <span class="category-icon">⚓️</span>
                         <h3>Amble (Coquet Estaury & Hauxley)</h3>
@@ -503,7 +503,7 @@
 
             <!-- Nature & Wildlife -->
             <div class="local-subsection">
-                <div class="recommendation-section reveal">
+                <div class="recommendation-section">
                     <div class="category-header">
                         <span class="category-icon">🦦</span>
                         <h3>Nature & Wildlife</h3>
@@ -558,7 +558,7 @@
 
             <!-- Food & Drink -->
             <div class="local-subsection">
-                <div class="recommendation-section reveal">
+                <div class="recommendation-section">
                     <div class="category-header">
                         <span class="category-icon">🍽️</span>
                         <h3>Food & Drink</h3>
@@ -654,7 +654,7 @@
 
             <!-- Practical Information -->
             <div class="local-subsection">
-                <div class="recommendation-section reveal">
+                <div class="recommendation-section">
                     <div class="category-header">
                         <span class="category-icon">ℹ️</span>
                         <h3>Practical Information</h3>
@@ -891,5 +891,98 @@
     </div>
 
     <!-- Back to Top Button -->
-    <button class="ba
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navList = document.querySelector('.nav-list');
         
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navList.classList.toggle('active');
+                navToggle.setAttribute('aria-expanded', 
+                    navToggle.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                );
+            });
+        }
+        
+        // Back to Top Button
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = lightbox.querySelector('.lightbox-image');
+        const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+        const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+        const lightboxNext = lightbox.querySelector('.lightbox-next');
+        
+        let currentImages = [];
+        let currentIndex = 0;
+        
+        // Get all photo items for lightbox
+        document.querySelectorAll('.photo-item[data-lightbox]').forEach(item => {
+            item.addEventListener('click', () => {
+                const section = item.closest('.photo-grid, .photo-grid-three');
+                currentImages = Array.from(section.querySelectorAll('.photo-item[data-lightbox]'));
+                currentIndex = currentImages.indexOf(item);
+                openLightbox(item);
+            });
+        });
+        
+        function openLightbox(item) {
+            const imgSrc = item.getAttribute('data-lightbox');
+            const caption = item.getAttribute('data-caption');
+            lightboxImage.src = imgSrc;
+            lightboxCaption.textContent = caption || '';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            openLightbox(currentImages[currentIndex]);
+        }
+        
+        function showNext() {
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            openLightbox(currentImages[currentIndex]);
+        }
+        
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', showPrev);
+        lightboxNext.addEventListener('click', showNext);
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        });
+    </script>
+</body>
+</html>
