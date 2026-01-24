@@ -298,6 +298,32 @@
             gap: 4px;
         }
         
+        /* Placeholder styling */
+        .photo-item.placeholder {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .photo-item.placeholder .placeholder-content {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .photo-item.placeholder .placeholder-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+        
+        .photo-item.placeholder .placeholder-text {
+            font-family: var(--font-body, 'Nunito Sans', sans-serif);
+            font-size: 13px;
+            color: var(--color-grey, #777777);
+            font-style: italic;
+        }
+        
         /* Responsive for photo grid */
         @media (max-width: 1200px) {
             .photo-grid { grid-template-columns: repeat(3, 1fr); }
@@ -382,11 +408,12 @@
         </div>
     </section>
 
-    <!-- Section Navigation -->
+    <!-- Section Navigation - Now 5 sections -->
     <nav class="section-nav">
         <div class="section-nav-container">
             <a href="#local">Local To Amble</a>
-            <a href="#coastline">Coastline & Castles</a>
+            <a href="#coast">Coast</a>
+            <a href="#castles">Castles</a>
             <a href="#cheviots">Cheviots & Interior</a>
             <a href="#additional">Additional Great Ideas</a>
         </div>
@@ -544,7 +571,7 @@
                             </div>
                             <div class="recommendation-content">
                                 <h4>St Oswald's Way & the Northumberland Coast Path</h4>
-                                <p>Section 4 of St. Oswald’s Way wanders up the scenic Coquet valley just inland from Amble on one of the longest sections of the route. It passes through Felton & woodland on the southern side of the Coquet to reach Rothbury, “the Capital of Coquetdale”, set in superb Northumberland scenery. Amble is toward the end of Stage 1 of the Northumberland Coast Path. Stage 2 from Warkworth to Craster via Alnmouth is lovely too!</p>
+                                <p>Section 4 of St. Oswald's Way wanders up the scenic Coquet valley just inland from Amble on one of the longest sections of the route. It passes through Felton & woodland on the southern side of the Coquet to reach Rothbury, "the Capital of Coquetdale", set in superb Northumberland scenery. Amble is toward the end of Stage 1 of the Northumberland Coast Path. Stage 2 from Warkworth to Craster via Alnmouth is lovely too!</p>
                                 <div class="recommendation-meta">
                                     <span>📍 10-min walk from cottage to intercept both</span>
                                     <span>⏱️ Full, active day for full stages</span>
@@ -698,57 +725,124 @@
     </section>
 
     <!-- ============================================
-         SECTION 2: THE STUNNING NORTHUMBERLAND COASTLINE & FAMOUS CASTLES
+         SECTION 2: COAST
          ============================================ -->
-    <section class="section bg-white" id="coastline">
+    <section class="section bg-white" id="coast">
         <div class="container">
             <section class="gallery-section">
                 <div class="section-title-bar">
                     <span class="section-number">2</span>
-                    <h2>Coastline & Castles</h2>
+                    <h2>Coast</h2>
                 </div>
-                <p class="section-intro">Northumberland boasts more castles than any other English county, set against a dramatic coastline designated an Area of Outstanding Natural Beauty.</p>
+                <p class="section-intro">Explore the stunning Northumberland coastline, designated an Area of Outstanding Natural Beauty. From dramatic cliffs to pristine sandy bays, discover some of Britain's most spectacular coastal scenery.</p>
+                
+                <div class="photo-grid">
+                    <!-- Budle Bay -->
+                    <div class="photo-item" data-lightbox="images/Budle_Pizza.jpeg" data-caption="The 1 mile wide bay forms part of the Lindisfarne National Nature Reserve. Famous for waders, wildfowl, and migrating birds on its mudflats, particularly when the tide is out. Every autumn the skies fill will migratory birds escaping cold arctic winters. Amongst them are the light-bellied Brent geese who travel from Svarlbard to feed on the rich mudflats, this is their only regular wintering site in Britain, accommodating 40% of the world population. When you've finished here you can grab a great pizza from the Northumberland Artisan Pizza Co!">
+                        <img src="images/Budle_Pizza.jpeg" alt="Budle Bay">
+                        <div class="photo-caption"><h4>Budle Bay</h4><p>The 1 mile wide bay forms part of the Lindisfarne National Nature Reserve. Famous for waders, wildfowl, and migrating birds on its mudflats, particularly when the tide is out. Every autumn the skies fill will migratory birds escaping cold arctic winters. Amongst them are the light-bellied Brent geese who travel from Svarlbard to feed on the rich mudflats, this is their only regular wintering site in Britain, accommodating 40% of the world population. When you've finished here you can grab a great pizza from the Northumberland Artisan Pizza Co!</p></div>
+                    </div>
+                    
+                    <!-- Craster -->
+                    <div class="photo-item" data-lightbox="images/Craster_Kippers_1.JPG" data-caption="Famous for kippers and stunning coastal walks">
+                        <img src="images/Craster_Kippers_1.JPG" alt="Craster">
+                        <div class="photo-caption"><h4>Craster</h4><p>Famous for L. Robson & Sons kippers a 4th generation family business where they still cure the herrings in the original smokehouses which are over 130 years old. From Craster you can begin the stunning mile-long coastal walk to Dunstanburgh Castle</p></div>
+                    </div>
+                    
+                    <!-- Farne Islands -->
+                    <div class="photo-item" data-lightbox="images/Farne_Islands_1.jpeg" data-caption="National Trust operated National Nature Reserve & Site of Special Scientific Interest. Home to an internationally significant breeding colony of seabirds (esp Puffins!) and Atlantic grey seals. Also a place of significant cultural heritage, with strong links to early Celtic Christianity & St Cuthbert who lived there as a hermit in the 7th century. Can be reached by various operators from Seahouses harbour. Booking in advance in busy periods is recommended.">
+                        <img src="images/Farne_Islands_1.jpeg" alt="Farne Islands">
+                        <div class="photo-caption"><h4>Farne Islands</h4><p>National Trust operated National Nature Reserve & Site of Special Scientific Interest. Home to an internationally significant breeding colony of seabirds (esp Puffins!) and Atlantic grey seals. Also a place of significant cultural heritage, with strong links to early Celtic Christianity & St Cuthbert who lived there as a hermit in the 7th century. Can be reached by various operators from Seahouses harbour. Booking in advance in busy periods is recommended</p></div>
+                    </div>
+                    
+                    <!-- Placeholder 1 -->
+                    <div class="photo-item placeholder">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">🏖️</div>
+                            <div class="placeholder-text">Coast_4.jpeg</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder 2 -->
+                    <div class="photo-item placeholder">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">🌊</div>
+                            <div class="placeholder-text">Coast_5.jpeg</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder 3 -->
+                    <div class="photo-item placeholder">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">⛵</div>
+                            <div class="placeholder-text">Coast_6.jpeg</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder 4 -->
+                    <div class="photo-item placeholder">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">🦭</div>
+                            <div class="placeholder-text">Coast_7.jpeg</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder 5 -->
+                    <div class="photo-item placeholder">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">🐚</div>
+                            <div class="placeholder-text">Coast_8.jpeg</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder 6 -->
+                    <div class="photo-item placeholder">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">🌅</div>
+                            <div class="placeholder-text">Coast_9.jpeg</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: CASTLES
+         ============================================ -->
+    <section class="section" id="castles">
+        <div class="container">
+            <section class="gallery-section">
+                <div class="section-title-bar">
+                    <span class="section-number">3</span>
+                    <h2>Castles</h2>
+                </div>
+                <p class="section-intro">Northumberland boasts more castles than any other English county. From magnificent restored fortresses to dramatic clifftop ruins, explore centuries of history and power.</p>
                 
                 <div class="photo-grid">
                     <div class="photo-item" data-lightbox="images/Warkworth_Castle_1.jpeg" data-caption="Magnificent medieval fortress overlooking the Coquet">
-                        <img src="images/Warkworth_Castle_1.jpeg" alt="Gallery Image">
+                        <img src="images/Warkworth_Castle_1.jpeg" alt="Warkworth Castle">
                         <div class="photo-caption"><h4>Warkworth Castle</h4><p>Puffling Cottage is just a short walk along the River Coquet from the iconic Warkworth Castle & Hermitage, the home from 14th century onwards of the powerful Percy family. Discover how the great medieval baronial fortress-palace worked in its 15th-century heyday.</p></div>
                     </div>
                     
                     <div class="photo-item" data-lightbox="images/Bamburgh_Castle_2.JPG" data-caption="Iconic fortress rising above golden sands">
-                        <img src="images/Bamburgh_Castle_2.JPG" alt="Gallery Image">
+                        <img src="images/Bamburgh_Castle_2.JPG" alt="Bamburgh Castle">
                         <div class="photo-caption"><h4>Bamburgh Castle</h4><p>Royal Fortress, Norman Stronghold, Coastal Home. "Bebbanburg" has stood guard above the spectacular Northumberland coastline for over 1,400 years & spans 9 acres on its rocky plateau.</p></div>
                     </div>
                     
                     <div class="photo-item" data-lightbox="images/Dunstanburgh_Castle_5.JPG" data-caption="Dramatic ruins reached only on foot across clifftops">
-                        <img src="images/Dunstanburgh_Castle_5.JPG" alt="Gallery Image">
+                        <img src="images/Dunstanburgh_Castle_5.JPG" alt="Dunstanburgh Castle">
                         <div class="photo-caption"><h4>Dunstanburgh Castle</h4><p>Dramatic ruins reached only on foot from Embleton Bay or Craster. Begun in 1313 by Earl Thomas of Lancaster & built on a massive scale, proclaiming his rivalry with the Crown. You can explore the whole of the great castle headland, with its towered walls and sheer drops to the sea on the north side.</p></div>
                     </div>
                     
                     <div class="photo-item" data-lightbox="images/Alnwick Castle_1.JPG" data-caption="The real Hogwarts - Harry Potter filming location">
-                        <img src="images/Alnwick Castle_1.JPG" alt="Gallery Image">
+                        <img src="images/Alnwick Castle_1.JPG" alt="Alnwick Castle">
                         <div class="photo-caption"><h4>Alnwick Castle</h4><p>Origins date back to the Norman period & historians believe construction began around 1096. In recent times used as a film set, for Transformers, Downton Abbey & as Hogwarts for 2 Harry Potter films</p></div>
                     </div>
                     
                     <div class="photo-item" data-lightbox="images/Lindisfarne_Priory_1.jpeg" data-caption="Lindisfarne - tidal island with ancient priory">
-                        <img src="images/Lindisfarne_Priory_1.jpeg" alt="Gallery Image">
+                        <img src="images/Lindisfarne_Priory_1.jpeg" alt="The Holy Island of Lindisfarne">
                         <div class="photo-caption"><h4>The Holy Island of Lindisfarne</h4><p>In 635AD St Aidan, invited by King Oswald, came from Iona & founded his monastery on the island of Lindisfarne. The masterpiece now known as the Lindisfarne Gospels was created here in the early 8th century. Lindisfarne is a tidal island reachable via a paved causeway only when the North Sea tides permit.</p></div>
-                    </div>
-                    
-                    <div class="photo-item" data-lightbox="images/Budle_Pizza.jpeg" data-caption="The 1 mile wide bay forms part of the Lindisfarne National Nature Reserve. Famous for waders, wildfowl, and migrating birds on its mudflats, particularly when the tide is out. Every autumn the skies fill will migratory birds escaping cold arctic winters. Amongst them are the light-bellied Brent geese who travel from Svarlbard to feed on the rich mudflats, this is their only regular wintering site in Britain, accommodating 40% of the world population. When you've finished here you can grab a great pizza from the Northumberland Artisan Pizza Co!">
-                        <img src="images/Budle_Pizza.jpeg" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Budle Bay</h4><p>The 1 mile wide bay forms part of the Lindisfarne National Nature Reserve. Famous for waders, wildfowl, and migrating birds on its mudflats, particularly when the tide is out. Every autumn the skies fill will migratory birds escaping cold arctic winters. Amongst them are the light-bellied Brent geese who travel from Svarlbard to feed on the rich mudflats, this is their only regular wintering site in Britain, accommodating 40% of the world population. When you've finished here you can grab a great pizza from the Northumberland Artisan Pizza Co!</p></div>
-                    </div>
-                    
-                    <div class="photo-item" data-lightbox="images/Craster_Kippers_1.JPG" data-caption="Famous for kippers and stunning coastal walks">
-                        <img src="images/Craster_Kippers_1.JPG" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Craster</h4><p>Famous for L. Robson & Sons kippers a 4th generation family business where they still cure the herrings in the original smokehouses which are over 130 years old. From Craster you can begin the stunning mile-long coastal walk to Dunstanburgh Castle</p></div>
-                    </div>
-                    
-                    <!-- Farne Islands moved here from Additional Places of Interest -->
-                    <div class="photo-item" data-lightbox="images/Farne_Islands_1.jpeg" data-caption="National Trust operated National Nature Reserve & Site of Special Scientific Interest. Home to an internationally significant breeding colony of seabirds (esp Puffins!) and Atlantic grey seals. Also a place of significant cultural heritage, with strong links to early Celtic Christianity & St Cuthbert who lived there as a hermit in the 7th century. Can be reached by various operators from Seahouses harbour. Booking in advance in busy periods is recommended.">
-                        <img src="images/Farne_Islands_1.jpeg" alt="Gallery Image">
-                        <div class="photo-caption"><h4>Farne Islands</h4><p>National Trust operated National Nature Reserve & Site of Special Scientific Interest. Home to an internationally significant breeding colony of seabirds (esp Puffins!) and Atlantic grey seals. Also a place of significant cultural heritage, with strong links to early Celtic Christianity & St Cuthbert who lived there as a hermit in the 7th century. Can be reached by various operators from Seahouses harbour. Booking in advance in busy periods is recommended</p></div>
                     </div>
                 </div>
             </section>
@@ -756,13 +850,13 @@
     </section>
     
     <!-- ============================================
-         SECTION 3: CHEVIOTS & THE INTERIOR
+         SECTION 4: CHEVIOTS & THE INTERIOR
          ============================================ -->
-    <section class="section" id="cheviots">
+    <section class="section bg-white" id="cheviots">
         <div class="container">
             <section class="gallery-section">
                 <div class="section-title-bar">
-                    <span class="section-number">3</span>
+                    <span class="section-number">4</span>
                     <h2>Cheviots & The Interior</h2>
                 </div>
                 <p class="section-intro">Venture inland to discover rolling hills, ancient forests, and the wild beauty of Northumberland National Park and the Dark Sky Reserve.</p>
@@ -773,9 +867,9 @@
                         <div class="photo-caption"><h4>Hadrian's Wall</h4><p>UNESCO World Heritage Roman frontier. Discover the remains of the forts & towns that once kept watch over the 73-mile long wall at variuos locations</p></div>
                     </div>
                     
-                    <div class="photo-item" data-lightbox="images/Kielder.png" data-caption="Home to England’s largest forest and the biggest man-made lake in Northern Europe">
+                    <div class="photo-item" data-lightbox="images/Kielder.png" data-caption="Home to England's largest forest and the biggest man-made lake in Northern Europe">
                         <img src="images/Kielder.png" alt="Kielder">
-                        <div class="photo-caption"><h4>Kielder Water & Forest</h4><p>Home to England’s largest forest and the biggest man-made lake in Northern Europe</p></div>
+                        <div class="photo-caption"><h4>Kielder Water & Forest</h4><p>Home to England's largest forest and the biggest man-made lake in Northern Europe</p></div>
                     </div>
                     
                     <div class="photo-item" data-lightbox="images/Kielder_Observatory.png" data-caption="At 580sq miles, Europe's second largest Dark Sky Reserve. Open year round">
@@ -788,13 +882,13 @@
     </section>
     
     <!-- ============================================
-         SECTION 4: ADDITIONAL GREAT IDEAS
+         SECTION 5: ADDITIONAL GREAT IDEAS
          ============================================ -->
-    <section class="section bg-white" id="additional">
+    <section class="section" id="additional">
         <div class="container">
             <section class="gallery-section">
                 <div class="section-title-bar">
-                    <span class="section-number">4</span>
+                    <span class="section-number">5</span>
                     <h2>Additional Great Ideas</h2>
                 </div>
                 <p class="section-intro">Beyond the classics, Northumberland has countless hidden gems, gardens, historic houses and experiences waiting to be discovered.</p>
@@ -867,7 +961,7 @@
                 
                 <div class="footer-contact">
                     <h4>Contact</h4>
-                    <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9eecebf3fff6f6f1f3fbedf2eafadef9f3fff7f2b0fdf1f3">[email&#160;protected]</a></p>
+                    <p>Email: rumahhomesltd@gmail.com</p>
                     <p>Location: Amble-By-The-Sea, Northumberland</p>
                 </div>
             </div>
@@ -890,7 +984,6 @@
         </div>
     </div>
 
-    <!-- Back to Top Button -->
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top">↑</button>
 
